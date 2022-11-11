@@ -1,4 +1,7 @@
+import 'package:e_commerce_app/screens/check_email_page.dart';
+import 'package:e_commerce_app/state/check_email_state.dart';
 import 'package:e_commerce_app/state/log_in_state.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'home_page.dart';
@@ -14,8 +17,8 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<LogInState>(
-        builder: (context, state, child) {
+      body: Consumer2<LogInState, CheckEmailState>(
+        builder: (context, state, state2, child) {
           return Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -32,11 +35,12 @@ class _LogInPageState extends State<LogInPage> {
                   ),
                   const SizedBox(height: 50),
                   TextField(
-                    controller: state.email,
+                    controller: TextEditingController(text: state2.email.text),
+                    readOnly: true,
                     decoration: InputDecoration(
-                      hintText: "E posta",
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(width: 30),
+                        borderSide:
+                            const BorderSide(width: 50, color: Colors.orange),
                         borderRadius: BorderRadius.circular(16),
                       ),
                     ),
@@ -45,6 +49,9 @@ class _LogInPageState extends State<LogInPage> {
                     padding: const EdgeInsets.symmetric(vertical: 40),
                     child: TextField(
                       controller: state.password,
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
                       decoration: InputDecoration(
                         hintText: "Parola",
                         border: OutlineInputBorder(
@@ -60,14 +67,44 @@ class _LogInPageState extends State<LogInPage> {
                     child: ElevatedButton(
                       onPressed: () async {
                         await state.service.loginCall(
-                            email: state.email.text,
+                            email: state2.email.text,
                             password: state.password.text);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: ((context) => HomePage()),
-                          ),
-                        );
+                        if (state.service.statuscode == true) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => HomePage()),
+                            ),
+                          );
+                        } else if (state.service.statuscode == false) {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Parola Hatalı"),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    CheckEmailPage()),
+                                              ),
+                                            ),
+                                        child: Text("Farklı Bir E posta")),
+                                    TextButton(
+                                        onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    LogInPage()),
+                                              ),
+                                            ),
+                                        child: Text("Tekrar Dene"))
+                                  ],
+                                );
+                              });
+                        }
                       },
                       child: const Text("Giriş Yap", textScaleFactor: 1.3),
                       style: ButtonStyle(
@@ -79,7 +116,18 @@ class _LogInPageState extends State<LogInPage> {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextButton(
+                      onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => CheckEmailPage()),
+                            ),
+                          ),
+                      child: Text("Farklı bir kullanıcı ile giriş yap"))
                 ],
               ),
             ),

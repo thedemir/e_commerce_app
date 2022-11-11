@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:e_commerce_app/screens/log_in_page.dart';
+import 'package:e_commerce_app/screens/register_page.dart';
 import 'package:e_commerce_app/state/check_email_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +29,7 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
                   const Padding(
                     padding: EdgeInsets.only(right: 150),
                     child: Text(
-                      "Giriş Yap",
+                      "E Posta",
                       textScaleFactor: 3,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -34,6 +38,7 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
                     padding: const EdgeInsets.symmetric(vertical: 50),
                     child: TextField(
                       controller: state.email,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         hintText: "E posta",
                         border: OutlineInputBorder(
@@ -50,6 +55,23 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
                       onPressed: () async {
                         await state.service
                             .checkEmailCall(email: state.email.text);
+
+                        log(state.statuscode.toString());
+                        if (state.service.statuscode == true) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => LogInPage()),
+                            ),
+                          );
+                        } else if (state.service.statuscode == false) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => RegisterPage()),
+                            ),
+                          );
+                        }
                       },
                       child: const Text("İleri", textScaleFactor: 1.3),
                       style: ButtonStyle(
@@ -61,7 +83,7 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

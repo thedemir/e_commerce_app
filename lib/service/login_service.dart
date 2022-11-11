@@ -1,23 +1,25 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
-import 'package:e_commerce_app/model/login_model.dart';
+import 'package:e_commerce_app/model/user_model.dart';
 
-class Service {
+class LoginService {
   var baseurl = "https://demoapi.webudi.tech/api/";
+  var statuscode;
 
-  Future<LogInModel?> loginCall(
+  Future<UserModel?> loginCall(
       {required String email, required String password}) async {
-    Map<String, dynamic> json = {"email": email, "password": password};
+    Map<String, dynamic> loginJson = {"email": email, "password": password};
     Map<String, String> headers = {"Accept": "Application/json"};
 
     var response = await Dio().post("${baseurl}login",
-        data: json, options: Options(headers: headers));
+        data: loginJson, options: Options(headers: headers));
 
     if (response.statusCode == 200) {
-      var result = LogInModel.fromJson(response.data);
+      var result = UserModel.fromJson(response.data);
       log(jsonEncode(response.data));
+      statuscode = result.status;
+
       return result;
     } else {
       log(response.data);

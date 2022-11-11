@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Giriş Başarılı", textScaleFactor: 3),
+            Text("ANA SAYFA", textScaleFactor: 3),
           ],
         ),
       ),

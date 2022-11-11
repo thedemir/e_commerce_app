@@ -1,7 +1,9 @@
 import 'package:e_commerce_app/screens/check_email_page.dart';
 import 'package:e_commerce_app/screens/log_in_page.dart';
+import 'package:e_commerce_app/screens/register_page.dart';
 import 'package:e_commerce_app/state/check_email_state.dart';
 import 'package:e_commerce_app/state/log_in_state.dart';
+import 'package:e_commerce_app/state/register_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +20,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<LogInState>(create: (context) => LogInState()),
         ChangeNotifierProvider<CheckEmailState>(
-            create: (context) => CheckEmailState())
+            create: (context) => CheckEmailState()),
+        ChangeNotifierProvider<RegisterState>(
+            create: (context) => RegisterState()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
