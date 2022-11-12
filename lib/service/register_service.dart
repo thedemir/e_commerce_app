@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:e_commerce_app/model/login_model.dart';
-
 import '../model/user_model.dart';
 
 class RegisterService {

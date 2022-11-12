@@ -1,8 +1,8 @@
 import 'package:e_commerce_app/state/register_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../state/check_email_state.dart';
-import 'home_page.dart';
+import '../../state/check_email_state.dart';
+import '../primary_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -107,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: ((context) => HomePage()),
+                            builder: ((context) => PrimaryPage()),
                           ),
                         );
                       },

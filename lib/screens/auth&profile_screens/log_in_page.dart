@@ -1,10 +1,10 @@
-import 'package:e_commerce_app/screens/check_email_page.dart';
+import 'package:e_commerce_app/screens/auth&profile_screens/check_email_page.dart';
 import 'package:e_commerce_app/state/check_email_state.dart';
 import 'package:e_commerce_app/state/log_in_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'home_page.dart';
+import '../primary_page.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -73,7 +73,7 @@ class _LogInPageState extends State<LogInPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: ((context) => HomePage()),
+                              builder: ((context) => PrimaryPage()),
                             ),
                           );
                         } else if (state.service.statuscode == false) {
@@ -93,13 +93,31 @@ class _LogInPageState extends State<LogInPage> {
                                             ),
                                         child: Text("Farklı Bir E posta")),
                                     TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, true),
+                                        child: Text("Tekrar Dene"))
+                                  ],
+                                );
+                              });
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Parola Gereklidir"),
+                                  actions: [
+                                    TextButton(
                                         onPressed: () => Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: ((context) =>
-                                                    LogInPage()),
+                                                    CheckEmailPage()),
                                               ),
                                             ),
+                                        child: Text("Farklı Bir E posta")),
+                                    TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, true),
                                         child: Text("Tekrar Dene"))
                                   ],
                                 );

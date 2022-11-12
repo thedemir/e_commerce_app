@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:e_commerce_app/model/check_email_model.dart';
 import 'package:e_commerce_app/model/user_model.dart';
 
 class CheckEmailService {
