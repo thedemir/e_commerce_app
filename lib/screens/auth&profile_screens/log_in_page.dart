@@ -1,13 +1,16 @@
+import 'dart:developer';
+
 import 'package:e_commerce_app/screens/auth&profile_screens/check_email_page.dart';
 import 'package:e_commerce_app/state/check_email_state.dart';
 import 'package:e_commerce_app/state/log_in_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../primary_page.dart';
 
 class LogInPage extends StatefulWidget {
-  const LogInPage({Key? key}) : super(key: key);
+  LogInPage({Key? key}) : super(key: key);
 
   @override
   State<LogInPage> createState() => _LogInPageState();
@@ -25,7 +28,7 @@ class _LogInPageState extends State<LogInPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(right: 150),
                     child: Text(
                       "Giriş Yap",
@@ -69,6 +72,7 @@ class _LogInPageState extends State<LogInPage> {
                         await state.service.loginCall(
                             email: state2.email.text,
                             password: state.password.text);
+
                         if (state.service.statuscode == true) {
                           Navigator.push(
                             context,
@@ -80,6 +84,7 @@ class _LogInPageState extends State<LogInPage> {
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {
+                                state.fetch();
                                 return AlertDialog(
                                   title: Text("Parola Hatalı"),
                                   actions: [
