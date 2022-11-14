@@ -4,6 +4,7 @@ import 'package:e_commerce_app/screens/auth&profile_screens/register_page.dart';
 import 'package:e_commerce_app/state/check_email_state.dart';
 import 'package:e_commerce_app/state/log_in_state.dart';
 import 'package:e_commerce_app/state/register_state.dart';
+import 'package:e_commerce_app/state/update_profile_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +24,8 @@ class MyApp extends StatelessWidget {
             create: (context) => CheckEmailState()),
         ChangeNotifierProvider<RegisterState>(
             create: (context) => RegisterState()),
+        ChangeNotifierProvider<UpdateProfileState>(
+            create: (context) => UpdateProfileState()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

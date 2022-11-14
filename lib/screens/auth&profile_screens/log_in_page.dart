@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:e_commerce_app/screens/auth&profile_screens/check_email_page.dart';
 import 'package:e_commerce_app/state/check_email_state.dart';
 import 'package:e_commerce_app/state/log_in_state.dart';
+import 'package:e_commerce_app/state/update_profile_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,8 +21,8 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer2<LogInState, CheckEmailState>(
-        builder: (context, state, state2, child) {
+      body: Consumer3<LogInState, CheckEmailState, UpdateProfileState>(
+        builder: (context, state, state2, state3, child) {
           return Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
