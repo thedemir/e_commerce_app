@@ -16,17 +16,11 @@ class _BasketPageState extends State<BasketPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
-            Icons.chevron_left_rounded,
-            color: Colors.orange,
-          ),
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: ((context) => PrimaryPage()),
+            icon: Icon(
+              Icons.chevron_left_rounded,
+              color: Colors.orange,
             ),
-          ),
-        ),
+            onPressed: () => Navigator.pop(context)),
         backgroundColor: Colors.white,
         title: Text(
           "Sepetim",

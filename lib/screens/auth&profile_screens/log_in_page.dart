@@ -74,6 +74,9 @@ class _LogInPageState extends State<LogInPage> {
                             email: state2.email.text,
                             password: state.password.text);
 
+                        state3.fetch2();
+                        state.fetch2();
+
                         if (state.service.statuscode == true) {
                           Navigator.push(
                             context,

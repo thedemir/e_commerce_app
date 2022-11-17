@@ -19,11 +19,13 @@ class LoginService {
   saveName(String name) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString("name", name);
+    print(name);
   }
 
   saveEmail(String email) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString("email", email);
+    print(email);
   }
 
   Future<UserModel?> loginCall(

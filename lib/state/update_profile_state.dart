@@ -10,29 +10,38 @@ class UpdateProfileState extends ChangeNotifier {
   TextEditingController password = TextEditingController();
   TextEditingController password_confirmation = TextEditingController();
 
-  getName() async {
+  Future<String?> getName() async {
     final prefs = await SharedPreferences.getInstance();
-    String name = await prefs.getString("name").toString();
+    name = await prefs.getString("name").toString();
+    print("get $name");
     notifyListeners();
+
     return name;
   }
 
-  getEmail() async {
+  Future<String?> getEmail() async {
     final prefs = await SharedPreferences.getInstance();
-    String email = await prefs.getString("email").toString();
+    email = await prefs.getString("email").toString();
+    print("get $name");
     notifyListeners();
     return email;
   }
 
-  void fetch() async {
-    await service.updateProfile(
-        name: name ?? "",
-        email: email ?? "",
-        password: password.text,
-        password_confirmation: password_confirmation.text);
+  void fetch2() async {
+    name = getEmail().toString();
+    email = getName().toString();
 
-    name = getName();
-    email = getEmail();
+    notifyListeners();
+  }
+
+  void fetch() async {
+    service.updateProfile(
+      name: name ?? "",
+      email: email ?? "",
+      password: password.text,
+      password_confirmation: password_confirmation.text,
+    );
+
     notifyListeners();
   }
 }

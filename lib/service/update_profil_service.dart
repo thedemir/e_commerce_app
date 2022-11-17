@@ -1,12 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:e_commerce_app/model/user_model.dart';
-import 'package:flutter/rendering.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UpdateProfileService {
   var baseurl = "https://demoapi.webudi.tech/api/";
+  var token;
+
+  Future<String?> getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    String token = await prefs.getString("token").toString();
+    print("get $token");
+    return token;
+  }
 
   Future<UserModel?> updateProfile(
       {required String name,
@@ -19,10 +26,18 @@ class UpdateProfileService {
       "password": password,
       "password_confirmation": password_confirmation
     };
-    Map<String, String> headers = {"Accept": "Application/json"};
-
-    var response = await Dio().post("${baseurl}update-profile");
-
+    var token2 = await getToken();
+    print("update   ${token2.toString()}");
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      "Accept": "Application/json,",
+      'Authorization': 'Bearer $token2',
+    };
+    var response = await Dio().post(
+      "${baseurl}update-profile",
+      data: loginJson,
+      options: Options(headers: headers),
+    );
     if (response.statusCode == 200) {
       var result = UserModel.fromJson(response.data);
       log(jsonEncode(response.data));

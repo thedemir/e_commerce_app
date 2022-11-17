@@ -7,14 +7,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LogInState extends ChangeNotifier {
   var service = LoginService();
   var statuscode;
+  var token;
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
-  getToken() async {
+  Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
     String token = await prefs.getString("token").toString();
-    print(token);
+    print("get $token");
+    notifyListeners();
+    return token;
+  }
+
+  void fetch2() {
+    token = getToken().toString();
   }
 
   void fetch() async {
