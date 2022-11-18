@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import '../model/user_model.dart';
+import '../../model/user_model.dart';
 
 class RegisterService {
   var baseurl = "https://demoapi.webudi.tech/api/";

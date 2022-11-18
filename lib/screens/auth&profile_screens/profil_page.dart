@@ -5,6 +5,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
+import '../../state/auth/update_profile_state.dart';
+
 class ProfilPage extends StatefulWidget {
   const ProfilPage({Key? key}) : super(key: key);
 
@@ -49,14 +51,12 @@ class _ProfilPageState extends State<ProfilPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
+                  const SizedBox(height: 10),
+                  Text(
+                    state.name ?? "",
+                    style: TextStyle(color: Colors.black, fontSize: 29),
                   ),
-                  Text(state.name ?? "",
-                      style: TextStyle(color: Colors.black, fontSize: 29)),
-                  const SizedBox(
-                    height: 6,
-                  ),
+                  const SizedBox(height: 6),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [

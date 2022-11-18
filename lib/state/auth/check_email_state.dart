@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:e_commerce_app/service/check_email_service.dart';
+import 'package:e_commerce_app/service/auth/check_email_service.dart';
 import 'package:flutter/cupertino.dart';
 
 class CheckEmailState extends ChangeNotifier {

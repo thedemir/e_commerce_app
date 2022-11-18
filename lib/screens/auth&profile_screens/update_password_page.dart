@@ -5,6 +5,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
+import '../../state/auth/update_profile_state.dart';
+
 class UpdatePasswordPage extends StatefulWidget {
   const UpdatePasswordPage({Key? key}) : super(key: key);
 

@@ -1,7 +1,7 @@
-import 'package:e_commerce_app/state/register_state.dart';
+import 'package:e_commerce_app/state/auth/register_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../state/check_email_state.dart';
+import '../../state/auth/check_email_state.dart';
 import '../primary_page.dart';
 
 class RegisterPage extends StatefulWidget {

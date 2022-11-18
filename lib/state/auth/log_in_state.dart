@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:e_commerce_app/service/login_service.dart';
+import 'package:e_commerce_app/service/auth/login_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

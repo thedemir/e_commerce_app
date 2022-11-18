@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:e_commerce_app/screens/auth&profile_screens/log_in_page.dart';
 import 'package:e_commerce_app/screens/auth&profile_screens/register_page.dart';
-import 'package:e_commerce_app/state/check_email_state.dart';
+import 'package:e_commerce_app/state/auth/check_email_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
