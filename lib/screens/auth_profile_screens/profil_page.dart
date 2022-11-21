@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/screens/auth&profile_screens/update_password_page.dart';
+import 'package:e_commerce_app/screens/auth_profile_screens/update_password_page.dart';
 import 'package:e_commerce_app/state/update_profile_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';

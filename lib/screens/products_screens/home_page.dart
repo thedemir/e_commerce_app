@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../state/auth/check_email_state.dart';
 import '../../state/auth/log_in_state.dart';
-import '../auth&profile_screens/check_email_page.dart';
+import '../auth_profile_screens/check_email_page.dart';
 import '../primary_page.dart';
 
 class HomePage extends StatefulWidget {
