@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:e_commerce_app/screens/auth_profile_screens/check_email_page.dart';
+import 'package:e_commerce_app/service/categories/all_categories_service.dart';
 import 'package:e_commerce_app/state/auth/check_email_state.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
 import 'package:e_commerce_app/state/auth/update_profile_state.dart';
+import 'package:e_commerce_app/state/categories/all_categories_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,8 +23,9 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer3<LogInState, CheckEmailState, UpdateProfileState>(
-        builder: (context, state, state2, state3, child) {
+      body: Consumer4<LogInState, CheckEmailState, UpdateProfileState,
+          GetAllCategoriesState>(
+        builder: (context, state, state2, state3, state4, child) {
           return Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -76,6 +79,7 @@ class _LogInPageState extends State<LogInPage> {
 
                         state3.fetch2();
                         state.fetch2();
+                        state4.fetc();
 
                         if (state.service.statuscode == true) {
                           Navigator.push(
@@ -89,6 +93,7 @@ class _LogInPageState extends State<LogInPage> {
                               context: context,
                               builder: (BuildContext context) {
                                 state.fetch();
+
                                 return AlertDialog(
                                   title: Text("Parola Hatalı"),
                                   actions: [

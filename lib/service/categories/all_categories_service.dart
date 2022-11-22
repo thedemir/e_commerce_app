@@ -3,11 +3,14 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:e_commerce_app/model/categories_model.dart';
+import 'package:e_commerce_app/state/categories/all_categories_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AllCategoriesService {
   var baseurl = "https://demoapi.webudi.tech/api/";
   var token;
+  var result;
+  List<CategoriesModels>? categories;
 
   Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
@@ -16,7 +19,7 @@ class AllCategoriesService {
     return token;
   }
 
-  Future<CategoriesModels?> getAllCategories() async {
+  Future getAllCategories() async {
     var token = await getToken();
     Map<String, String> headers = {
       'Content-Type': 'application/json',
@@ -27,12 +30,17 @@ class AllCategoriesService {
         .get("${baseurl}categories", options: Options(headers: headers));
 
     if (response.statusCode == 200) {
-      var result = CategoriesModels.fromJson(response.data);
+      result = CategoriesModels.fromJson(response.data);
+      if (result is List) {
+        categories = await result.map((e) => CategoriesModels.fromJson(e));
+        return categories;
+      }
+
       log(jsonEncode(response.data));
       return result;
     } else {
       log(response.data);
-      print("Bir sorun oluştu ${response.statusCode}");
+      log("Bir sorun oluştu ${response.statusCode}");
     }
   }
 }

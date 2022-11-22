@@ -18,16 +18,38 @@ class _BasketPageState extends State<BasketPage> {
         leading: IconButton(
             icon: Icon(
               Icons.chevron_left_rounded,
-              color: Colors.orange,
+              color: Colors.white,
             ),
             onPressed: () => Navigator.pop(context)),
-        backgroundColor: Colors.white,
         title: Text(
-          "Sepetim",
-          style: TextStyle(color: Colors.orange),
+          "Sepet",
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         elevation: 0.5,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+            child: Container(
+                width: 65,
+                height: 30,
+                decoration: BoxDecoration(
+                    color: Colors.orange[50],
+                    borderRadius: BorderRadius.circular(14)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.attach_money_rounded, color: Colors.orange),
+                    Text(
+                      "0",
+                      textScaleFactor: 1.5,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400, color: Colors.orange),
+                    )
+                  ],
+                )),
+          )
+        ],
       ),
     );
   }

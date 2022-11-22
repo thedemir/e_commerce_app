@@ -1,10 +1,12 @@
 import 'dart:developer';
+import 'package:e_commerce_app/screens/auth_profile_screens/check_email_page.dart';
 import 'package:e_commerce_app/screens/auth_profile_screens/profil_page.dart';
 import 'package:e_commerce_app/screens/products_screens/basket_page.dart';
 import 'package:e_commerce_app/screens/products_screens/home_page.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../state/auth/update_profile_state.dart';
 
 class PrimaryPage extends StatefulWidget {
@@ -38,7 +40,6 @@ class _HomePageState extends State<PrimaryPage> {
                 ),
               ),
               backgroundColor: Colors.orange,
-              elevation: 1,
             ),
             body: tabs[currentIndex],
             bottomNavigationBar: BottomNavigationBar(
@@ -148,44 +149,49 @@ class _HomePageState extends State<PrimaryPage> {
                                     builder: (context) => BasketPage()));
                           },
                         ), ////////////////////EXPANSİON PANEL/////////////
-                        ExpansionPanelList(
-                          elevation: 0,
-                          children: [
-                            ExpansionPanel(
-                              backgroundColor: Colors.transparent,
-                              headerBuilder: (context, isExpanded) {
-                                return ListTile(
-                                  leading: const Icon(Icons.menu_rounded),
-                                  title: const Text("Kategoriler",
-                                      textScaleFactor: 1.2),
-                                  onTap: () {},
-                                );
-                              },
-                              body: Column(
-                                children: [
-                                  ListTile(
-                                    leading: const Icon(Icons.menu_rounded),
-                                    title: const Text("Kategoriler",
-                                        textScaleFactor: 1.2),
-                                    onTap: () {},
-                                  ),
-                                  ListTile(
-                                    leading: const Icon(Icons.menu_rounded),
-                                    title: const Text("Kategoriler",
-                                        textScaleFactor: 1.2),
-                                    onTap: () {},
-                                  ),
-                                ],
-                              ),
-                              canTapOnHeader: true,
-                              isExpanded: _expanded,
-                            ),
-                          ],
-                          dividerColor: Colors.grey,
-                          expansionCallback: (panelIndex, isExpanded) {
-                            _expanded = !_expanded;
-                            setState(() {});
-                          },
+                        // ExpansionPanelList(
+                        //   elevation: 0,
+                        //   children: [
+                        //     ExpansionPanel(
+                        //       backgroundColor: Colors.transparent,
+                        //       headerBuilder: (context, isExpanded) {
+                        //         return ListTile(
+                        //           leading: const Icon(Icons.menu_rounded),
+                        //           title: const Text("Kategoriler",
+                        //               textScaleFactor: 1.2),
+                        //           onTap: () {},
+                        //         );
+                        //       },
+                        //       body: Column(
+                        //         children: [
+                        //           ListTile(
+                        //             leading: const Icon(Icons.menu_rounded),
+                        //             title: const Text("Kategoriler",
+                        //                 textScaleFactor: 1.2),
+                        //             onTap: () {},
+                        //           ),
+                        //           ListTile(
+                        //             leading: const Icon(Icons.menu_rounded),
+                        //             title: const Text("Kategoriler",
+                        //                 textScaleFactor: 1.2),
+                        //             onTap: () {},
+                        //           ),
+                        //         ],
+                        //       ),
+                        //       canTapOnHeader: true,
+                        //       isExpanded: _expanded,
+                        //     ),
+                        //   ],
+                        //   dividerColor: Colors.grey,
+                        //   expansionCallback: (panelIndex, isExpanded) {
+                        //     _expanded = !_expanded;
+                        //     setState(() {});
+                        //   },
+                        // ),
+                        ExpansionTile(
+                          leading: const Icon(Icons.menu_rounded),
+                          title: Text("Kategoriler", textScaleFactor: 1.2),
+                          children: <Widget>[],
                         ),
                         ListTile(
                           leading: const Icon(
@@ -197,7 +203,13 @@ class _HomePageState extends State<PrimaryPage> {
                             textScaleFactor: 1.2,
                             style: TextStyle(color: Colors.red),
                           ),
-                          onTap: () {},
+                          onTap: () async {
+                            await state.logOut();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CheckEmailPage()));
+                          },
                         ),
                       ],
                     ),

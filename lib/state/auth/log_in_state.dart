@@ -20,6 +20,23 @@ class LogInState extends ChangeNotifier {
     return token;
   }
 
+  Future<String?> delToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+    print("get $token");
+    notifyListeners();
+  }
+
+  Future<String?> logOut() async {
+    delToken();
+    email.clear();
+    password.clear();
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+    print("get $token");
+    notifyListeners();
+  }
+
   void fetch2() {
     token = getToken().toString();
   }
