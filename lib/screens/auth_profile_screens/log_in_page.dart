@@ -1,15 +1,11 @@
-import 'dart:developer';
-
 import 'package:e_commerce_app/screens/auth_profile_screens/check_email_page.dart';
-import 'package:e_commerce_app/service/categories/all_categories_service.dart';
 import 'package:e_commerce_app/state/auth/check_email_state.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
 import 'package:e_commerce_app/state/auth/update_profile_state.dart';
-import 'package:e_commerce_app/state/categories/all_categories_state.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../state/category/get_all_categories_state.dart';
 import '../primary_page.dart';
 
 class LogInPage extends StatefulWidget {
@@ -23,9 +19,9 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer4<LogInState, CheckEmailState, UpdateProfileState,
-          GetAllCategoriesState>(
-        builder: (context, state, state2, state3, state4, child) {
+      body: Consumer5<LogInState, CheckEmailState, UpdateProfileState,
+          GetAllCategoriesState, GetAllProductsState>(
+        builder: (context, state, state2, state3, state4, state5, child) {
           return Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -80,6 +76,7 @@ class _LogInPageState extends State<LogInPage> {
                         state3.fetch2();
                         state.fetch2();
                         await state4.fetch();
+                        await state5.fetch();
 
                         if (state.service.statuscode == true) {
                           Navigator.push(

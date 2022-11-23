@@ -1,13 +1,16 @@
 import 'dart:developer';
+
 import 'package:dio/dio.dart';
-import 'package:e_commerce_app/model/categories_model.dart';
+import 'package:e_commerce_app/model/product_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AllCategoriesService {
+import '../../model/categories_model.dart';
+
+class GetAllPoductsService {
   var baseurl = "https://demoapi.webudi.tech/api/";
   var token;
   var result;
-  List<CategoriesModel>? categories;
+  List<ProductModel>? categories;
 
   Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
@@ -16,7 +19,7 @@ class AllCategoriesService {
     return token;
   }
 
-  Future getAllCategories() async {
+  Future getAllProducts() async {
     var token = await getToken();
     Map<String, String> headers = {
       'Content-Type': 'application/json',
@@ -24,13 +27,13 @@ class AllCategoriesService {
       'Authorization': 'Bearer $token',
     };
     var response = await Dio()
-        .get("${baseurl}categories", options: Options(headers: headers));
+        .get("${baseurl}products", options: Options(headers: headers));
 
     if (response.statusCode == 200) {
-      var result = CategoriesModel.fromJson(response.data);
+      var result = ProductModel.fromJson(response.data);
       log("gelen response => ${response.data}");
-      log("result => ${result.categories?[0].image}");
-      return result.categories;
+      log("result => ${result.products?.data?[0].image}");
+      return result.products?.data;
     } else {
       log(response.data);
       log("Bir sorun oluştu ${response.statusCode}");
