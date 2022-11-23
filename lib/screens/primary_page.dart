@@ -4,6 +4,7 @@ import 'package:e_commerce_app/screens/auth_profile_screens/profil_page.dart';
 import 'package:e_commerce_app/screens/products_screens/basket_page.dart';
 import 'package:e_commerce_app/screens/products_screens/home_page.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
+import 'package:e_commerce_app/state/categories/all_categories_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,8 +26,8 @@ class _HomePageState extends State<PrimaryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<LogInState, UpdateProfileState>(
-      builder: (context, state, state2, child) {
+    return Consumer3<LogInState, UpdateProfileState, GetAllCategoriesState>(
+      builder: (context, state, state2, state3, child) {
         return Scaffold(
             key: scaffoldKey,
             appBar: AppBar(
@@ -39,6 +40,7 @@ class _HomePageState extends State<PrimaryPage> {
                   color: Colors.white,
                 ),
               ),
+              elevation: 2,
               backgroundColor: Colors.orange,
             ),
             body: tabs[currentIndex],
@@ -191,7 +193,34 @@ class _HomePageState extends State<PrimaryPage> {
                         ExpansionTile(
                           leading: const Icon(Icons.menu_rounded),
                           title: Text("Kategoriler", textScaleFactor: 1.2),
-                          children: <Widget>[],
+                          children: <Widget>[
+                            ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: state3.categories?.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 5),
+                                    child: ListTile(
+                                        leading: SizedBox(
+                                          width: 50,
+                                          height: 50,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            child: Image.network(
+                                                "${state3.categories?[index].image}"),
+                                          ),
+                                        ),
+                                        title: Text(
+                                            "${state3.categories?[index].title}")),
+                                  ),
+                                );
+                              },
+                            )
+                          ],
                         ),
                         ListTile(
                           leading: const Icon(

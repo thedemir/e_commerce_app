@@ -1,16 +1,13 @@
-import 'dart:convert';
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:e_commerce_app/model/categories_model.dart';
-import 'package:e_commerce_app/state/categories/all_categories_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AllCategoriesService {
   var baseurl = "https://demoapi.webudi.tech/api/";
   var token;
   var result;
-  List<CategoriesModels>? categories;
+  List<CategoriesModel>? categories;
 
   Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
@@ -30,14 +27,10 @@ class AllCategoriesService {
         .get("${baseurl}categories", options: Options(headers: headers));
 
     if (response.statusCode == 200) {
-      result = CategoriesModels.fromJson(response.data);
-      if (result is List) {
-        categories = await result.map((e) => CategoriesModels.fromJson(e));
-        return categories;
-      }
-
-      log(jsonEncode(response.data));
-      return result;
+      var result = CategoriesModel.fromJson(response.data);
+      log("gelen response => ${response.data}");
+      log("result => ${result.categories?[0].image}");
+      return result.categories;
     } else {
       log(response.data);
       log("Bir sorun oluştu ${response.statusCode}");

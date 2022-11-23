@@ -16,15 +16,22 @@ class CategoryCard extends StatelessWidget {
       child: Container(
         height: 100,
         width: 100,
-        color: Colors.grey[100],
+        decoration: BoxDecoration(
+          color: Colors.grey[100],
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network(imageUrl)),
-              Text(title, style: GoogleFonts.lato())
+                  child: Image.network("${imageUrl}")),
+              Text(
+                title,
+                style: GoogleFonts.lato(),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              )
             ],
           ),
         ),

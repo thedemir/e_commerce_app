@@ -13,19 +13,16 @@ class LoginService {
   saveToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString("token", token);
-    print(token);
   }
 
   saveName(String name) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString("name", name);
-    print(name);
   }
 
   saveEmail(String email) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString("email", email);
-    print(email);
   }
 
   Future<UserModel?> loginCall(
@@ -42,7 +39,6 @@ class LoginService {
       saveName(result.user!.name.toString());
       saveEmail(result.user!.email.toString());
       //--------------------------------
-      log(jsonEncode(response.data));
       statuscode = result.status;
       return result;
     } else {

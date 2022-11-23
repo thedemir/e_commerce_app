@@ -1,57 +1,56 @@
-class CategoriesModels {
-  int? id;
-  String? title;
-  String? image;
-  DateTime? createdat;
-  DateTime? updatedat;
+class CategoriesModel {
+  List<Categories>? categories;
+  String? message;
+  bool? status;
 
-  CategoriesModels(
-      {this.id, this.title, this.image, this.createdat, this.updatedat});
+  CategoriesModel({this.categories, this.message, this.status});
 
-  CategoriesModels.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    image = json['image'];
-    createdat = json['created_at'];
-    updatedat = json['updated_at'];
+  CategoriesModel.fromJson(Map<String, dynamic> json) {
+    if (json['categories'] != null) {
+      categories = <Categories>[];
+      json['categories'].forEach((v) {
+        categories!.add(new Categories.fromJson(v));
+      });
+    }
+    message = json['message'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id'] = id;
-    data['title'] = title;
-    data['image'] = image;
-    data['created_at'] = createdat;
-    data['updated_at'] = updatedat;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.categories != null) {
+      data['categories'] = this.categories!.map((v) => v.toJson()).toList();
+    }
+    data['message'] = this.message;
+    data['status'] = this.status;
     return data;
   }
 }
 
-class Root {
-  String? message;
-  bool? status;
-  List<CategoriesModels?>? categories;
+class Categories {
+  int? id;
+  String? title;
+  String? image;
+  String? createdAt;
+  String? updatedAt;
 
-  Root({this.message, this.status, this.categories});
+  Categories({this.id, this.title, this.image, this.createdAt, this.updatedAt});
 
-  Root.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    status = json['status'];
-    if (json['categories'] != null) {
-      categories = <CategoriesModels>[];
-      json['categories'].forEach((v) {
-        categories!.add(CategoriesModels.fromJson(v));
-      });
-    }
+  Categories.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    image = json['image'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['message'] = message;
-    data['status'] = status;
-    data['categories'] = categories != null
-        ? categories!.map((v) => v?.toJson()).toList()
-        : null;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['image'] = this.image;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
     return data;
   }
 }

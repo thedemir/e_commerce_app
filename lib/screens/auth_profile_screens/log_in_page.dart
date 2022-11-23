@@ -79,7 +79,7 @@ class _LogInPageState extends State<LogInPage> {
 
                         state3.fetch2();
                         state.fetch2();
-                        state4.fetc();
+                        await state4.fetch();
 
                         if (state.service.statuscode == true) {
                           Navigator.push(
