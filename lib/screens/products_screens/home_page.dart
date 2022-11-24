@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/components/category_card.dart';
 import 'package:e_commerce_app/components/product_card.dart';
 import 'package:e_commerce_app/constants/text_styles.dart';
+import 'package:e_commerce_app/state/category/get_category_state.dart';
 import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,9 +17,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<GetCategoryState>(context, listen: false).fetch(14);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Consumer3<GetAllCategoriesState, UpdateProfileState,
-        GetAllProductsState>(builder: (context, state, state2, state3, widget) {
+    return Consumer4<GetAllCategoriesState, UpdateProfileState,
+            GetAllProductsState, GetCategoryState>(
+        builder: (context, state, state2, state3, state4, widget) {
       return Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -46,6 +54,8 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return CategoryCard(
+                        id: 14,
+                        products: state4.products![index],
                         imageUrl: "${state.categories?[index].image}",
                         title: "${state.categories?[index].title}");
                   },
@@ -88,6 +98,7 @@ class _HomePageState extends State<HomePage> {
                         imageUrl: "${state3.products?[index].image}",
                         price: "${state3.products?[index].price}",
                         title: "${state3.products?[index].title}",
+                        products: state3.products![index],
                       );
                     },
                   ),

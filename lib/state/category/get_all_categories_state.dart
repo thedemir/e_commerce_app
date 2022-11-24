@@ -10,7 +10,6 @@ class GetAllCategoriesState extends ChangeNotifier {
   Future fetch() async {
     categories = await service.getAllCategories();
 
-    log(" FETCH  >>>>> ${categories?[0].title} ");
     return categories;
   }
 }

@@ -10,7 +10,6 @@ class GetAllPoductsService {
   var baseurl = "https://demoapi.webudi.tech/api/";
   var token;
   var result;
-  List<ProductModel>? categories;
 
   Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
@@ -31,8 +30,7 @@ class GetAllPoductsService {
 
     if (response.statusCode == 200) {
       var result = ProductModel.fromJson(response.data);
-      log("gelen response => ${response.data}");
-      log("result => ${result.products?.data?[0].image}");
+
       return result.products?.data;
     } else {
       log(response.data);

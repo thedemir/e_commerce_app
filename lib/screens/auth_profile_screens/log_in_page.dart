@@ -2,6 +2,7 @@ import 'package:e_commerce_app/screens/auth_profile_screens/check_email_page.dar
 import 'package:e_commerce_app/state/auth/check_email_state.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
 import 'package:e_commerce_app/state/auth/update_profile_state.dart';
+import 'package:e_commerce_app/state/category/get_category_state.dart';
 import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,9 +20,10 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer5<LogInState, CheckEmailState, UpdateProfileState,
-          GetAllCategoriesState, GetAllProductsState>(
-        builder: (context, state, state2, state3, state4, state5, child) {
+      body: Consumer6<LogInState, CheckEmailState, UpdateProfileState,
+          GetAllCategoriesState, GetAllProductsState, GetCategoryState>(
+        builder:
+            (context, state, state2, state3, state4, state5, state6, child) {
           return Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -76,6 +78,7 @@ class _LogInPageState extends State<LogInPage> {
                         state3.fetch2();
                         state.fetch2();
                         await state4.fetch();
+                        await state6.fetch(14);
                         await state5.fetch();
 
                         if (state.service.statuscode == true) {

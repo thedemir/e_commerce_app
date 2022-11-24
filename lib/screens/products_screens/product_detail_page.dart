@@ -5,34 +5,36 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ProductDetailPage extends StatefulWidget {
-  const ProductDetailPage({Key? key}) : super(key: key);
+import '../../model/product_model.dart';
 
-  @override
-  State<ProductDetailPage> createState() => _ProductDetailPageState();
-}
+class ProductDetailPage extends StatelessWidget {
+  const ProductDetailPage({Key? key, required this.products}) : super(key: key);
 
-class _ProductDetailPageState extends State<ProductDetailPage> {
+  final Data products;
+
   @override
   Widget build(BuildContext context) {
     return Consumer<GetAllProductsState>(builder: (context, state, widget) {
       return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(
-                Icons.chevron_left_rounded,
-                color: Colors.orange,
-                size: 30,
-              )),
-          backgroundColor: Colors.white,
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(
+              Icons.chevron_left_rounded,
+              color: Colors.orange,
+              size: 30,
+            ),
+          ),
+          backgroundColor: Colors.transparent,
         ),
         body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 15, right: 15, top: 30, bottom: 20),
-              child: Image.network("https://picsum.photos/640/480?random=310"),
+              padding:
+                  const EdgeInsets.only(left: 5, right: 5, top: 30, bottom: 20),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(7),
+                  child: Image.network("${products.image}")),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -40,11 +42,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Fuga veniam.",
-                    style: GoogleFonts.lato(fontSize: 38),
+                    "${products.title}",
+                    style: GoogleFonts.lato(
+                        fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "€ 380",
+                    "${products.price}",
                     style: GoogleFonts.lato(
                         fontSize: 25,
                         color: Colors.orange,
@@ -55,10 +58,52 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-              child: Text(
-                  "Rem vero ut dolores officia ea. Est sint quidem quia. Qui dignissimos non dolorum alias est pariatur totam. Qui dolore consequuntur totam fugit modi.",
-                  style: GoogleFonts.lato(fontSize: 20)),
+              child: Text("${products.description}",
+                  style: GoogleFonts.lato(fontSize: 20), maxLines: 4),
             ),
+            SizedBox(height: 140),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.favorite_border_rounded,
+                      size: 38,
+                      color: Colors.grey,
+                    )),
+                SizedBox(width: 20),
+                SizedBox(
+                  width: 250,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.shopping_basket_rounded,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Sepete Ekle",
+                          style: GoogleFonts.lato(
+                              color: Colors.white, fontSize: 21),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       );

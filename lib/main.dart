@@ -4,6 +4,7 @@ import 'package:e_commerce_app/state/auth/log_in_state.dart';
 import 'package:e_commerce_app/state/auth/register_state.dart';
 import 'package:e_commerce_app/state/auth/update_profile_state.dart';
 import 'package:e_commerce_app/state/category/get_all_categories_state.dart';
+import 'package:e_commerce_app/state/category/get_category_state.dart';
 import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,8 @@ class MyApp extends StatelessWidget {
             create: (context) => GetAllCategoriesState()),
         ChangeNotifierProvider<GetAllProductsState>(
             create: (context) => GetAllProductsState()),
+        ChangeNotifierProvider<GetCategoryState>(
+            create: (context) => GetCategoryState()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
