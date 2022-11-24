@@ -45,7 +45,7 @@ class ProductDetailPage extends StatelessWidget {
                         fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "${products.price}",
+                    "€ ${products.price}",
                     style: GoogleFonts.lato(
                         fontSize: 25,
                         color: Colors.orange,

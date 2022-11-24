@@ -70,9 +70,7 @@ class _HomePageState extends State<HomePage> {
                     Text("Ürünler",
                         textScaleFactor: 1.5, style: TextStyles().v2),
                     IconButton(
-                        onPressed: () {
-                          state3.fetch();
-                        },
+                        onPressed: () {},
                         icon: Icon(
                           Icons.sort_rounded,
                           color: Colors.orange,

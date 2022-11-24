@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:e_commerce_app/screens/auth_profile_screens/check_email_page.dart';
 import 'package:e_commerce_app/screens/auth_profile_screens/profil_page.dart';
 import 'package:e_commerce_app/screens/products_screens/basket_page.dart';
+import 'package:e_commerce_app/screens/products_screens/category_detail_page.dart';
 import 'package:e_commerce_app/screens/products_screens/home_page.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
 import 'package:flutter/material.dart';
@@ -203,6 +204,16 @@ class _HomePageState extends State<PrimaryPage> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(bottom: 5),
                                     child: ListTile(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CategoryDetailPage(
+                                                          category: state3
+                                                                  .categories![
+                                                              index])));
+                                        },
                                         leading: SizedBox(
                                           width: 50,
                                           height: 50,
