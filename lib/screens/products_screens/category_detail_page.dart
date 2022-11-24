@@ -1,21 +1,22 @@
+import 'package:e_commerce_app/model/categories_model.dart';
+import 'package:e_commerce_app/model/product_model.dart';
 import 'package:e_commerce_app/state/category/get_category_state.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../../components/product_card.dart';
+import '../../components/category_detail_product_card.dart';
 import '../../constants/text_styles.dart';
-import '../../model/get_category_model.dart';
 
 class CategoryDetailPage extends StatelessWidget {
-  const CategoryDetailPage({Key? key, required this.products})
+  const CategoryDetailPage({Key? key, required this.category})
       : super(key: key);
 
-  final Data products;
+  final Categories category;
 
   @override
   Widget build(BuildContext context) {
     return Consumer<GetCategoryState>(
-      builder: (context, value, child) {
+      builder: (context, state, child) {
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
@@ -42,20 +43,21 @@ class CategoryDetailPage extends StatelessWidget {
                       children: [
                         ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image.network("${products.image}")),
+                            child: Image.network("${category.image}")),
                         SizedBox(width: 40),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${products.title}",
+                              "${category.title}",
                               style: GoogleFonts.lato(
                                   fontSize: 23, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 5),
                             Padding(
                               padding: const EdgeInsets.only(left: 11),
-                              child: Text("Ürün Sayısı ",
+                              child: Text(
+                                  "Ürün Sayısı   ${state.products?.length}",
                                   style: GoogleFonts.lato(
                                       fontSize: 15, color: Colors.grey)),
                             ),
@@ -86,13 +88,18 @@ class CategoryDetailPage extends StatelessWidget {
               child: Container(
                 height: 602,
                 child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 10),
-                  itemCount: 6,
+                  itemCount: state.products?.length,
                   itemBuilder: (context, index) {
-                    return FlutterLogo();
+                    return CategoryDetailProductCard(
+                      products: state.products![index],
+                      imageUrl: "${state.products?[index].image}",
+                      title: "${state.products?[index].title}",
+                      price: "${state.products?[index].price}",
+                    );
                   },
                 ),
               ),

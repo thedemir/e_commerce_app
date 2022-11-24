@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     return CategoryCard(
                         id: 14,
-                        products: state4.products![index],
+                        category: state.categories![index],
                         imageUrl: "${state.categories?[index].image}",
                         title: "${state.categories?[index].title}");
                   },
@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                         maxCrossAxisExtent: 200,
                         crossAxisSpacing: 20,
                         mainAxisSpacing: 10),
-                    itemCount: state.categories?.length,
+                    itemCount: state3.products?.length,
                     itemBuilder: (context, index) {
                       return ProductCard(
                         categoryTitle:
@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                         imageUrl: "${state3.products?[index].image}",
                         price: "${state3.products?[index].price}",
                         title: "${state3.products?[index].title}",
-                        products: state3.products![index],
+                        products: state4.products![index],
                       );
                     },
                   ),

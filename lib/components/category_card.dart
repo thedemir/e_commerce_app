@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/model/categories_model.dart';
+import 'package:e_commerce_app/model/product_model.dart';
 import 'package:e_commerce_app/screens/products_screens/category_detail_page.dart';
 import 'package:e_commerce_app/state/category/get_category_state.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +12,13 @@ class CategoryCard extends StatelessWidget {
       {Key? key,
       required this.imageUrl,
       required this.title,
-      required this.products,
+      required this.category,
       required this.id})
       : super(key: key);
   final String imageUrl;
   final String title;
   final int id;
-  final Data products;
+  final Categories category;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class CategoryCard extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        CategoryDetailPage(products: products)));
+                        CategoryDetailPage(category: category)));
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 7),

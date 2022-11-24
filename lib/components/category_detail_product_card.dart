@@ -1,25 +1,19 @@
 import 'package:e_commerce_app/screens/products_screens/product_detail_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../model/get_category_model.dart';
 
-import '../model/product_model.dart';
-
-class ProductCard extends StatelessWidget {
-  const ProductCard(
+class CategoryDetailProductCard extends StatelessWidget {
+  const CategoryDetailProductCard(
       {Key? key,
       required this.imageUrl,
       required this.title,
       required this.price,
-      required this.categoryTitle,
       required this.products})
       : super(key: key);
   final String imageUrl;
   final String title;
   final String price;
-  final String categoryTitle;
   final Data products;
 
   @override
