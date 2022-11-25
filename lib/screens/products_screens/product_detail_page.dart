@@ -15,15 +15,21 @@ class ProductDetailPage extends StatelessWidget {
     return Consumer<GetAllProductsState>(builder: (context, state, widget) {
       return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.orange[50],
           leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Icon(
-              Icons.chevron_left_rounded,
-              color: Colors.orange,
-              size: 30,
-            ),
+              icon: Icon(
+                Icons.chevron_left_rounded,
+                color: Colors.orange,
+                size: 30,
+              ),
+              onPressed: () => Navigator.pop(context)),
+          title: Text(
+            "Ürün Detay",
+            style: GoogleFonts.lato(
+                color: Colors.orange, fontWeight: FontWeight.bold),
           ),
-          backgroundColor: Colors.transparent,
+          centerTitle: true,
+          elevation: 0,
         ),
         body: Column(
           children: [

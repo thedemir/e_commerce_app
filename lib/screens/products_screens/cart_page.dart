@@ -52,35 +52,62 @@ class _BasketPageState extends State<BasketPage> {
             ),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.orange, width: 2)),
+                border:
+                    Border(top: BorderSide(width: 0.6, color: Colors.orange)),
+                color: Colors.white,
+              ),
               height: 77,
-              child: Row(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                    child: Container(
-                        width: 65,
-                        height: 30,
-                        decoration: BoxDecoration(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Toplam Tutar",
+                      style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "€ 0",
+                      style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.orange),
+                    ),
+                    SizedBox(
+                      width: 40,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ))),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.payment_rounded,
+                            size: 20,
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "€ 0",
-                              style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.orange),
-                            )
-                          ],
-                        )),
-                  )
-                ],
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            "Siparisi Tamamla",
+                            style: GoogleFonts.lato(
+                                color: Colors.white, fontSize: 15),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           ],
