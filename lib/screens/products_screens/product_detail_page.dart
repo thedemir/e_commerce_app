@@ -34,6 +34,27 @@ class ProductDetailPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(7),
                   child: Image.network("${products.image}")),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(width: 20),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(6)),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 9),
+                    child: Text(
+                      "Kategori adı",
+                      style:
+                          GoogleFonts.lato(color: Colors.white, fontSize: 13),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 5),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -59,7 +80,7 @@ class ProductDetailPage extends StatelessWidget {
               child: Text("${products.description}",
                   style: GoogleFonts.lato(fontSize: 20), maxLines: 4),
             ),
-            SizedBox(height: 140),
+            SizedBox(height: 120),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
