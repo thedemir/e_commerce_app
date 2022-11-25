@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/components/category_card.dart';
 import 'package:e_commerce_app/components/product_card.dart';
 import 'package:e_commerce_app/constants/text_styles.dart';
+import 'package:e_commerce_app/screens/products_screens/categories_page.dart';
 import 'package:e_commerce_app/state/category/get_category_state.dart';
 import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,11 @@ class _HomePageState extends State<HomePage> {
                     Text("Kategoriler",
                         textScaleFactor: 1.5, style: TextStyles().v2),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CategoriesPage(),
+                            )),
                         child: Text("Tümünü Görüntüle", textScaleFactor: 0.9))
                   ],
                 ),
@@ -84,6 +89,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   height: 450,
                   child: GridView.builder(
+                    physics: PageScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent: 200,
                         crossAxisSpacing: 20,
