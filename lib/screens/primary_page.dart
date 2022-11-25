@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:e_commerce_app/screens/auth_profile_screens/check_email_page.dart';
 import 'package:e_commerce_app/screens/auth_profile_screens/profil_page.dart';
-import 'package:e_commerce_app/screens/products_screens/basket_page.dart';
+import 'package:e_commerce_app/screens/products_screens/cart_page.dart';
 import 'package:e_commerce_app/screens/products_screens/category_detail_page.dart';
 import 'package:e_commerce_app/screens/products_screens/home_page.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
