@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/model/cart_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -5,7 +6,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CartProductCard extends StatelessWidget {
-  const CartProductCard({Key? key}) : super(key: key);
+  const CartProductCard({Key? key, required this.cartProduct})
+      : super(key: key);
+
+  final CartProductModel cartProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -22,26 +26,25 @@ class CartProductCard extends StatelessWidget {
                 height: 80,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                        "https://picsum.photos/640/480?random=1")),
+                    child: Image.network("${cartProduct.image}")),
               ),
               SizedBox(width: 30),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Ürün Adı",
+                  Text("${cartProduct.title}",
                       style: GoogleFonts.lato(
                           fontSize: 20, fontWeight: FontWeight.w700)),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 7),
-                    child: Text("Kategori Adı",
+                    child: Text("${cartProduct.title}",
                         style: GoogleFonts.lato(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey)),
                   ),
                   Text(
-                    "€ 99.00",
+                    "${cartProduct.productPrice}",
                     style: GoogleFonts.lato(
                         fontSize: 15,
                         color: Colors.orange,
@@ -52,7 +55,7 @@ class CartProductCard extends StatelessWidget {
               SizedBox(width: 17),
               IconButton(onPressed: null, icon: Icon(Icons.remove)),
               Text(
-                "1",
+                "${cartProduct.piece}",
                 style:
                     GoogleFonts.lato(fontSize: 15, fontWeight: FontWeight.w600),
               ),
