@@ -16,9 +16,11 @@ class CartProductCard extends StatelessWidget {
       required this.cartProduct,
       required this.add,
       required this.remove,
-      required this.delete})
+      required this.delete,
+      required this.piece})
       : super(key: key);
 
+  int piece;
   final CartProductModel cartProduct;
   void Function()? add;
   void Function()? remove;
@@ -73,7 +75,7 @@ class CartProductCard extends StatelessWidget {
                                     color: Colors.grey)),
                           ),
                           Text(
-                            "${cartProduct.product.price}",
+                            "€ ${cartProduct.product.price}",
                             style: GoogleFonts.lato(
                                 fontSize: 15,
                                 color: Colors.orange,
@@ -85,7 +87,7 @@ class CartProductCard extends StatelessWidget {
                     SizedBox(width: 15),
                     IconButton(onPressed: remove, icon: Icon(Icons.remove)),
                     Text(
-                      "${cartProduct.piece}",
+                      "${piece}",
                       style: GoogleFonts.lato(
                           fontSize: 15, fontWeight: FontWeight.w600),
                     ),

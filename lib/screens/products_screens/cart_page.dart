@@ -49,18 +49,20 @@ class _BasketPageState extends State<BasketPage> {
                         itemCount: state.cart.length,
                         itemBuilder: (context, index) {
                           return CartProductCard(
-                              delete: () {},
-                              remove: () {
-                                setState(() {
-                                  state.cart[index].piece -= 1;
-                                });
-                              },
-                              add: () {
-                                setState(() {
-                                  state.cart[index].piece += 1;
-                                });
-                              },
-                              cartProduct: state.cart[index]);
+                            delete: () {},
+                            remove: () {
+                              setState(() {
+                                state.increseProduct(state.cartItems[index]);
+                              });
+                            },
+                            add: () {
+                              setState(() {
+                                state.incrementCart(state.cartItems[index]);
+                              });
+                            },
+                            cartProduct: state.cartItems[index],
+                            piece: state.cart[state.cartItems[index]] ?? 1,
+                          );
                         },
                       ),
                     )
@@ -89,7 +91,7 @@ class _BasketPageState extends State<BasketPage> {
                           width: 10,
                         ),
                         Text(
-                          "€${state.calculateTotal()}",
+                          "€ ${state.cartTotalMoney}",
                           style: TextStyle(
                               fontSize: 19,
                               fontWeight: FontWeight.w500,

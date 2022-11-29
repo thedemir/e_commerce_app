@@ -100,14 +100,8 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       return ProductCard(
                         addToCart: () {
-                          if (state5.cart.contains(
-                                  CartProductModel(state3.products![index])) ==
-                              false) {
-                            state5.addToCart(
-                                CartProductModel(state3.products![index]));
-                          } else {
-                            SnackBar(content: Text("Ürün sepete ekli"));
-                          }
+                          state5.addFirstToCart(
+                              CartProductModel(state3.products![index]));
                         },
                         categoryTitle:
                             "${state3.products?[index].category?.title}",

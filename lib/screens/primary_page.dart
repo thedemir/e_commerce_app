@@ -40,10 +40,21 @@ class _HomePageState extends State<PrimaryPage> {
                 icon: const Icon(
                   Icons.menu_rounded,
                   color: Colors.white,
+                  size: 26,
                 ),
               ),
               elevation: 2,
               backgroundColor: Colors.orange,
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.notifications,
+                    color: Colors.white,
+                    size: 26,
+                  ),
+                ),
+              ],
             ),
             body: tabs[currentIndex],
             bottomNavigationBar: BottomNavigationBar(
