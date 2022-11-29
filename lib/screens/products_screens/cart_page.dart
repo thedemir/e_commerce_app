@@ -49,6 +49,16 @@ class _BasketPageState extends State<BasketPage> {
                         itemCount: state.cart.length,
                         itemBuilder: (context, index) {
                           return CartProductCard(
+                              remove: () {
+                                setState(() {
+                                  state.cart[index].piece -= 1;
+                                });
+                              },
+                              add: () {
+                                setState(() {
+                                  state.cart[index].piece += 1;
+                                });
+                              },
                               cartProduct: state.cart[index]);
                         },
                       ),
@@ -71,14 +81,14 @@ class _BasketPageState extends State<BasketPage> {
                           "Toplam Tutar",
                           style: TextStyle(
                               fontSize: 19,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                               color: Colors.black),
                         ),
                         SizedBox(
                           width: 10,
                         ),
                         Text(
-                          "€ 0",
+                          "€${state.calculateTotal()}",
                           style: TextStyle(
                               fontSize: 19,
                               fontWeight: FontWeight.w500,
@@ -109,7 +119,7 @@ class _BasketPageState extends State<BasketPage> {
                                 ),
                                 SizedBox(width: 10),
                                 Text(
-                                  "Siparisi Tamamla",
+                                  "Devam et",
                                   style: GoogleFonts.lato(
                                       color: Colors.white, fontSize: 15),
                                 )

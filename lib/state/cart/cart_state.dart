@@ -16,4 +16,13 @@ class CartState extends ChangeNotifier {
     cart.remove(product);
     notifyListeners();
   }
+
+  String calculateTotal() {
+    double totalPrice = 0;
+    for (int i = 0; i < cart.length; i++) {
+      totalPrice += double.parse(cart[i].product.price ?? "0");
+    }
+
+    return totalPrice.toStringAsFixed(2);
+  }
 }
