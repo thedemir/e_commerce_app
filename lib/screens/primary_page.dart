@@ -5,6 +5,7 @@ import 'package:e_commerce_app/screens/products_screens/cart_page.dart';
 import 'package:e_commerce_app/screens/products_screens/category_detail_page.dart';
 import 'package:e_commerce_app/screens/products_screens/home_page.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
+import 'package:e_commerce_app/state/cart/cart_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/auth/update_profile_state.dart';
@@ -26,8 +27,9 @@ class _HomePageState extends State<PrimaryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer3<LogInState, UpdateProfileState, GetAllCategoriesState>(
-      builder: (context, state, state2, state3, child) {
+    return Consumer4<LogInState, UpdateProfileState, GetAllCategoriesState,
+        CartState>(
+      builder: (context, state, state2, state3, state4, child) {
         return Scaffold(
             key: scaffoldKey,
             appBar: AppBar(
@@ -62,6 +64,7 @@ class _HomePageState extends State<PrimaryPage> {
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
+                // print(state4.cart);
                 Navigator.push(
                   context,
                   MaterialPageRoute(

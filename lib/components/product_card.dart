@@ -8,19 +8,22 @@ import 'package:google_fonts/google_fonts.dart';
 import '../model/get_category_model.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard(
+  ProductCard(
       {Key? key,
       required this.imageUrl,
       required this.title,
       required this.price,
       required this.categoryTitle,
-      required this.products})
+      required this.products,
+      required this.addToCart})
       : super(key: key);
+
   final String imageUrl;
   final String title;
   final String price;
   final String categoryTitle;
   final Data products;
+  void Function()? addToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +61,7 @@ class ProductCard extends StatelessWidget {
                   width: 120,
                   height: 25,
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: addToCart,
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(width: 1, color: Colors.orange),
                     ),

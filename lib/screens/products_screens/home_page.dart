@@ -1,7 +1,9 @@
 import 'package:e_commerce_app/components/category_card.dart';
 import 'package:e_commerce_app/components/product_card.dart';
 import 'package:e_commerce_app/constants/text_styles.dart';
+import 'package:e_commerce_app/model/cart_model.dart';
 import 'package:e_commerce_app/screens/products_screens/categories_page.dart';
+import 'package:e_commerce_app/state/cart/cart_state.dart';
 import 'package:e_commerce_app/state/category/get_category_state.dart';
 import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +27,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer4<GetAllCategoriesState, UpdateProfileState,
-            GetAllProductsState, GetCategoryState>(
-        builder: (context, state, state2, state3, state4, widget) {
+    return Consumer5<GetAllCategoriesState, UpdateProfileState,
+            GetAllProductsState, GetCategoryState, CartState>(
+        builder: (context, state, state2, state3, state4, state5, widget) {
       return Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -97,6 +99,10 @@ class _HomePageState extends State<HomePage> {
                     itemCount: state3.products?.length,
                     itemBuilder: (context, index) {
                       return ProductCard(
+                        addToCart: () {
+                          state5.addToCart(
+                              CartProductModel(state3.products![index]));
+                        },
                         categoryTitle:
                             "${state3.products?[index].category?.title}",
                         imageUrl: "${state3.products?[index].image}",
@@ -116,3 +122,11 @@ class _HomePageState extends State<HomePage> {
   }
 }
 //state.categories?[index].image ??
+// CartProductModel(
+//                             state3.products?[index].id ?? 1,
+//                             "${state3.products?[index].title}",
+//                             double.parse("${state3.products?[index].price}"),
+//                             "${state3.products?[index].image}",
+//                             435,
+//                             1,
+//                           )

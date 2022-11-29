@@ -1,11 +1,8 @@
-class CartProductModel {
-  final int id;
-  final String title;
-  final double productPrice;
-  final String image;
-  final double totalPrice;
-  final int piece;
+import 'package:e_commerce_app/model/product_model.dart';
 
-  CartProductModel(this.id, this.title, this.productPrice, this.image,
-      this.totalPrice, this.piece);
+class CartProductModel {
+  Data product;
+  final int piece = 1;
+
+  CartProductModel(this.product);
 }

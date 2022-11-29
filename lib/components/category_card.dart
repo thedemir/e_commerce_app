@@ -47,12 +47,12 @@ class CategoryCard extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SizedBox(
-                      width: 70,
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(imageUrl)),
-                    ),
+                    // SizedBox(
+                    //   width: 70,
+                    //   child: ClipRRect(
+                    //       borderRadius: BorderRadius.circular(10),
+                    //       child: Image.network(imageUrl)),
+                    // ),
                     Text(
                       title,
                       style: GoogleFonts.lato(),
