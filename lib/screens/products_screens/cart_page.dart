@@ -49,6 +49,7 @@ class _BasketPageState extends State<BasketPage> {
                         itemCount: state.cart.length,
                         itemBuilder: (context, index) {
                           return CartProductCard(
+                              delete: () {},
                               remove: () {
                                 setState(() {
                                   state.cart[index].piece -= 1;

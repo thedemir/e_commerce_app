@@ -12,9 +12,8 @@ class CartState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeFromCart(CartProductModel product) {
-    cart.remove(product);
-    notifyListeners();
+  void removeFromCart(index) {
+    cart.removeAt(index);
   }
 
   String calculateTotal() {
