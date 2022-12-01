@@ -80,6 +80,7 @@ class _ProfilPageState extends State<ProfilPage> {
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.key_rounded),
                               hintText: "Yeni Şifre",
                               border: OutlineInputBorder(
                                 borderSide: const BorderSide(width: 30),
@@ -96,6 +97,7 @@ class _ProfilPageState extends State<ProfilPage> {
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.key_rounded),
                               hintText: "Yeni Şifre Tekrar",
                               border: OutlineInputBorder(
                                 borderSide: const BorderSide(width: 30),

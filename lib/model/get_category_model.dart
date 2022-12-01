@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/model/product_model.dart';
+
 class GetCategoryModel {
   String? message;
   bool? status;
@@ -112,6 +114,7 @@ class Data {
   String? price;
   String? createdAt;
   String? updatedAt;
+  Category? category;
 
   Data(
       {this.id,
@@ -121,7 +124,8 @@ class Data {
       this.description,
       this.price,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.category});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];

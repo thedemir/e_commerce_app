@@ -7,7 +7,7 @@ import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../state/category/get_all_categories_state.dart';
-import '../primary_page.dart';
+import '../general_screens/primary_page.dart';
 
 class LogInPage extends StatefulWidget {
   LogInPage({Key? key}) : super(key: key);
@@ -71,6 +71,15 @@ class _LogInPageState extends State<LogInPage> {
                     width: 280,
                     child: ElevatedButton(
                       onPressed: () async {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                    color: Colors.orange),
+                              );
+                            });
+
                         await state.service.loginCall(
                             email: state2.email.text,
                             password: state.password.text);
@@ -80,7 +89,7 @@ class _LogInPageState extends State<LogInPage> {
                         await state4.fetch();
                         await state6.fetch(14);
                         await state5.fetch();
-
+                        Navigator.of(context).pop();
                         if (state.service.statuscode == true) {
                           Navigator.push(
                             context,

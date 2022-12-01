@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/components/cart_product_card.dart';
-import 'package:e_commerce_app/screens/primary_page.dart';
+import 'package:e_commerce_app/screens/general_screens/primary_page.dart';
 import 'package:e_commerce_app/state/cart/cart_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -112,7 +112,7 @@ class _BasketPageState extends State<BasketPage> {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                vertical: 9, horizontal: 3),
+                                vertical: 13, horizontal: 3),
                             child: Row(
                               children: [
                                 Icon(

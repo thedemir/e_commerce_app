@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../model/get_category_model.dart';
+import 'package:e_commerce_app/model/get_category_model.dart';
 
 class ProductCard extends StatelessWidget {
   ProductCard(
@@ -28,10 +27,20 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ProductDetailPage(products: products))),
+      onTap: () async {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return Center(
+                child: CircularProgressIndicator(color: Colors.orange),
+              );
+            });
+        Navigator.of(context).pop();
+        await Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ProductDetailPage(products: products)));
+      },
       child: Container(
         decoration: BoxDecoration(
             color: Colors.grey[100], borderRadius: BorderRadius.circular(20)),

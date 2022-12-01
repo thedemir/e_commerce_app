@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/get_category_model.dart';
+import 'package:e_commerce_app/model/get_category_model.dart';
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({Key? key, required this.products}) : super(key: key);

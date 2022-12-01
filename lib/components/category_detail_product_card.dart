@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/screens/products_screens/product_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../model/get_category_model.dart';
+import 'package:e_commerce_app/model/get_category_model.dart';
 
 class CategoryDetailProductCard extends StatelessWidget {
   const CategoryDetailProductCard(

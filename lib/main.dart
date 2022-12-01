@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/screens/auth_profile_screens/check_email_page.dart';
+import 'package:e_commerce_app/screens/general_screens/splash_screen.dart';
 import 'package:e_commerce_app/state/auth/check_email_state.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
 import 'package:e_commerce_app/state/auth/register_state.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.orange,
             appBarTheme: AppBarTheme(elevation: 0)),
-        home: const CheckEmailPage(),
+        home: const SplashPage(),
       ),
     );
   }

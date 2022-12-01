@@ -26,8 +26,15 @@ class CategoryCard extends StatelessWidget {
       builder: (context, state, child) {
         return GestureDetector(
           onTap: () async {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return Center(
+                    child: CircularProgressIndicator(color: Colors.orange),
+                  );
+                });
             await state.fetch(id);
-
+            Navigator.of(context).pop();
             Navigator.push(
                 context,
                 MaterialPageRoute(

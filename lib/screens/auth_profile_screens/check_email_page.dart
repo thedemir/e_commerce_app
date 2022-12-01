@@ -2,7 +2,8 @@ import 'dart:developer';
 
 import 'package:e_commerce_app/screens/auth_profile_screens/log_in_page.dart';
 import 'package:e_commerce_app/screens/auth_profile_screens/register_page.dart';
-import 'package:e_commerce_app/screens/primary_page.dart';
+import 'package:e_commerce_app/screens/general_screens/primary_page.dart';
+import 'package:e_commerce_app/screens/general_screens/splash_screen.dart';
 import 'package:e_commerce_app/state/auth/check_email_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ class CheckEmailPage extends StatefulWidget {
 }
 
 class _CheckEmailPageState extends State<CheckEmailPage> {
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +56,19 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
                     width: 280,
                     child: ElevatedButton(
                       onPressed: () async {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                    color: Colors.orange),
+                              );
+                            });
                         await state.service
                             .checkEmailCall(email: state.email.text);
 
-                        log(state.statuscode.toString());
+                        Navigator.of(context).pop();
+
                         if (state.service.statuscode == true) {
                           Navigator.push(
                             context,
