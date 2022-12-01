@@ -8,6 +8,7 @@ import 'package:e_commerce_app/screens/products_screens/home_page.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
 import 'package:e_commerce_app/state/cart/cart_state.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../state/auth/update_profile_state.dart';
 import '../../state/category/get_all_categories_state.dart';
@@ -44,7 +45,22 @@ class _HomePageState extends State<PrimaryPage> {
                   size: 26,
                 ),
               ),
-              elevation: 2,
+              centerTitle: true,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.shopping_basket,
+                    color: Colors.white,
+                  ),
+                  SizedBox(width: 3),
+                  Text(
+                    "Nadir",
+                    style: GoogleFonts.lato(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
               backgroundColor: Colors.orange,
               actions: [
                 IconButton(
@@ -128,7 +144,8 @@ class _HomePageState extends State<PrimaryPage> {
                         height: 10,
                       ),
                       Text(state2.name ?? "",
-                          style: TextStyle(color: Colors.white, fontSize: 29)),
+                          style: GoogleFonts.lato(
+                              color: Colors.white, fontSize: 29)),
                       const SizedBox(
                         height: 6,
                       ),
@@ -138,7 +155,7 @@ class _HomePageState extends State<PrimaryPage> {
                           const Icon(Icons.mail, color: Colors.white, size: 18),
                           Text(
                             state2.email ?? "",
-                            style: const TextStyle(color: Colors.white),
+                            style: GoogleFonts.lato(color: Colors.white),
                           ),
                         ],
                       ),

@@ -36,6 +36,19 @@ class _BasketPageState extends State<BasketPage> {
             ),
             centerTitle: true,
             elevation: 0,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      state.cleanCart();
+                    });
+                  },
+                  icon: Icon(
+                    Icons.delete_outline_rounded,
+                    color: Colors.red,
+                    size: 30,
+                  ))
+            ],
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -80,25 +93,35 @@ class _BasketPageState extends State<BasketPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Toplam Tutar",
-                          style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Toplam Tutar",
+                              style: GoogleFonts.lato(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black38),
+                            ),
+                            SizedBox(height: 2),
+                            Text(
+                              "€${state.cartTotalMoney}",
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                            Text(
+                              "${state.cartItems.length} Ürün",
+                              style: GoogleFonts.lato(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.orange[300]),
+                            ),
+                          ],
                         ),
                         SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "€ ${state.cartTotalMoney}",
-                          style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.orange),
-                        ),
-                        SizedBox(
-                          width: 30,
+                          width: 70,
                         ),
                         ElevatedButton(
                           onPressed: () {},
@@ -106,13 +129,13 @@ class _BasketPageState extends State<BasketPage> {
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(16),
                               ),
                             ),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                vertical: 13, horizontal: 3),
+                                vertical: 13, horizontal: 12),
                             child: Row(
                               children: [
                                 Icon(
@@ -122,7 +145,7 @@ class _BasketPageState extends State<BasketPage> {
                                 ),
                                 SizedBox(width: 10),
                                 Text(
-                                  "Devam et",
+                                  "Sepeti Onayla",
                                   style: GoogleFonts.lato(
                                       color: Colors.white, fontSize: 15),
                                 )

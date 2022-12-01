@@ -1,20 +1,25 @@
+import 'package:e_commerce_app/screens/products_screens/category_detail_page.dart';
+import 'package:e_commerce_app/screens/products_screens/category_product_detail_page.dart';
 import 'package:e_commerce_app/screens/products_screens/product_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:e_commerce_app/model/get_category_model.dart';
+import 'package:e_commerce_app/model/product_model.dart';
 
 class CategoryDetailProductCard extends StatelessWidget {
-  const CategoryDetailProductCard(
+  CategoryDetailProductCard(
       {Key? key,
       required this.imageUrl,
       required this.title,
       required this.price,
-      required this.products})
+      required this.products,
+      required this.addToCart})
       : super(key: key);
+
   final String imageUrl;
   final String title;
   final String price;
   final Data products;
+  void Function()? addToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +37,12 @@ class CategoryDetailProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                    width: 100,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.network("$imageUrl"))),
+                  width: 100,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network("$imageUrl"),
+                  ),
+                ),
                 Text(
                   title,
                   style: GoogleFonts.lato(),
@@ -52,7 +59,7 @@ class CategoryDetailProductCard extends StatelessWidget {
                   width: 120,
                   height: 25,
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: addToCart,
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(width: 1, color: Colors.orange),
                     ),

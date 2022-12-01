@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:e_commerce_app/model/get_category_model.dart';
+import 'package:e_commerce_app/model/product_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GetCategoryService {
@@ -28,7 +29,7 @@ class GetCategoryService {
         .get("${baseurl}categories/$id", options: Options(headers: headers));
 
     if (response.statusCode == 200) {
-      var result = GetCategoryModel.fromJson(response.data);
+      var result = ProductModel.fromJson(response.data);
 
       log("gelen response => ${response.data}");
       log("result => ${result.products?.data?[0].image}");

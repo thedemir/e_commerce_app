@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:e_commerce_app/model/cart_model.dart';
-import 'package:e_commerce_app/model/get_category_model.dart';
+import 'package:e_commerce_app/model/product_model.dart';
 import 'package:e_commerce_app/service/categories/get_category_service.dart';
 import 'package:flutter/cupertino.dart';
 

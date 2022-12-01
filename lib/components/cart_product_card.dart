@@ -24,7 +24,7 @@ class CartProductCard extends StatelessWidget {
   final CartProductModel cartProduct;
   void Function()? add;
   void Function()? remove;
-  final Function delete;
+  final Function() delete;
 
   @override
   Widget build(BuildContext context) {

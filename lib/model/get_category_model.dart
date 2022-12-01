@@ -136,6 +136,9 @@ class Data {
     price = json['price'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    category = json['category'] != null
+        ? new Category.fromJson(json['category'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -148,6 +151,9 @@ class Data {
     data['price'] = this.price;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
+    if (this.category != null) {
+      data['category'] = this.category!.toJson();
+    }
     return data;
   }
 }

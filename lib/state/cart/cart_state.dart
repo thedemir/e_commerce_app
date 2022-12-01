@@ -26,6 +26,12 @@ class CartState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void cleanCart() {
+    cart.clear();
+
+    notifyListeners();
+  }
+
   void increseProduct(CartProductModel product) {
     if (cart[product] == null) {
       return;

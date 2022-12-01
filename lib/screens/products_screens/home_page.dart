@@ -121,17 +121,18 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Icon(Icons.add_shopping_cart_rounded,
-                                        color: Colors.white),
+                                        color: Colors.orange),
                                     SizedBox(width: 10),
                                     Text("Sepete Eklendi",
                                         style: GoogleFonts.lato(
+                                            color: Colors.orange,
                                             fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                                 duration: Duration(seconds: 2),
-                                backgroundColor: Colors.orange,
+                                backgroundColor: Colors.orange[50],
                                 action: SnackBarAction(
-                                  textColor: Colors.black,
+                                  textColor: Colors.green,
                                   label: "Sepete Git",
                                   onPressed: () => Navigator.push(
                                     context,
@@ -151,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                           imageUrl: "${state3.products?[index].image}",
                           price: "${state3.products?[index].price}",
                           title: "${state3.products?[index].title}",
-                          products: state4.products![index],
+                          products: state3.products![index],
                         );
                       },
                     ),
