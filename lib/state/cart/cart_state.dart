@@ -7,11 +7,20 @@ import '../../model/product_model.dart';
 
 class CartState extends ChangeNotifier {
   Map<CartProductModel, int> cart = {};
-
   List<CartProductModel> get cartItems => cart.keys.toList();
+  //////////////////////////////////////////////////////
+  Map<CartProductModel, int> cancelCart = {};
+  List<CartProductModel> get cancelCartItems => cancelCart.keys.toList();
+
+  void cancelCartAdd(CartProductModel product) {
+    cancelCart[product] = 1;
+
+    notifyListeners();
+  }
 
   void addFirstToCart(CartProductModel product) {
     cart[product] = 1;
+
     notifyListeners();
   }
 
@@ -48,15 +57,23 @@ class CartState extends ChangeNotifier {
     }
   }
 
+  double productTotalMoney(CartProductModel product) {
+    double total = 0;
+
+    return total;
+  }
+
   double get cartTotalMoney {
     if (cart.isEmpty) {
       return 0;
     } else {
-      double _total = 0;
+      double _total = 0.00;
+      double totalPrice;
       cart.forEach((key, value) {
         _total += double.parse("${key.product.price}") * value;
       });
-      return _total;
+      totalPrice = double.parse(_total.toStringAsFixed(2));
+      return totalPrice;
     }
   }
 }

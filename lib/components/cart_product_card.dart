@@ -17,9 +17,11 @@ class CartProductCard extends StatelessWidget {
       required this.add,
       required this.remove,
       required this.delete,
-      required this.piece})
+      required this.piece,
+      required this.totalPrice})
       : super(key: key);
 
+  double totalPrice;
   int piece;
   final CartProductModel cartProduct;
   void Function()? add;
@@ -31,10 +33,11 @@ class CartProductCard extends StatelessWidget {
     return Consumer<CartState>(
       builder: (context, state, child) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
           child: Slidable(
             endActionPane: ActionPane(motion: StretchMotion(), children: [
               SlidableAction(
+                borderRadius: BorderRadius.circular(7),
                 onPressed: delete,
                 backgroundColor: Colors.red,
                 icon: Icons.delete,
@@ -56,7 +59,7 @@ class CartProductCard extends StatelessWidget {
                     ),
                     SizedBox(width: 30),
                     Container(
-                      width: 100,
+                      width: 102,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -74,13 +77,25 @@ class CartProductCard extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                     color: Colors.grey)),
                           ),
-                          Text(
-                            "€ ${cartProduct.product.price}",
-                            style: GoogleFonts.lato(
-                                fontSize: 15,
-                                color: Colors.orange,
-                                fontWeight: FontWeight.w600),
-                          )
+                          Row(
+                            children: [
+                              Text(
+                                "€ ${cartProduct.product.price}",
+                                style: GoogleFonts.lato(
+                                    fontSize: 10,
+                                    color: Colors.black38,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(width: 3),
+                              Text(
+                                "€ ${totalPrice}",
+                                style: GoogleFonts.lato(
+                                    fontSize: 13,
+                                    color: Colors.orange,
+                                    fontWeight: FontWeight.w600),
+                              )
+                            ],
+                          ),
                         ],
                       ),
                     ),

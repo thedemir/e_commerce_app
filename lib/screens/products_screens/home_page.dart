@@ -119,6 +119,7 @@ class _HomePageState extends State<HomePage> {
                               SnackBar(
                                 content: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Icon(Icons.add_shopping_cart_rounded,
                                         color: Colors.orange),
@@ -127,6 +128,11 @@ class _HomePageState extends State<HomePage> {
                                         style: GoogleFonts.lato(
                                             color: Colors.orange,
                                             fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 3),
+                                    Text("(${state5.cart.length})",
+                                        style: GoogleFonts.lato(
+                                            color: Colors.black38,
+                                            fontSize: 12)),
                                   ],
                                 ),
                                 duration: Duration(seconds: 2),

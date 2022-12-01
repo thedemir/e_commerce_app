@@ -53,9 +53,9 @@ class CategoryDetailPage extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // ClipRRect(
-                        //     borderRadius: BorderRadius.circular(10),
-                        //     child: Image.network("${category.image}")),
+                        ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network("${category.image}")),
                         SizedBox(width: 40),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

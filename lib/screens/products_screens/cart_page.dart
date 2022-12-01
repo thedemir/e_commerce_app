@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:e_commerce_app/components/cart_product_card.dart';
 import 'package:e_commerce_app/screens/general_screens/primary_page.dart';
 import 'package:e_commerce_app/state/cart/cart_state.dart';
@@ -39,46 +40,47 @@ class _BasketPageState extends State<BasketPage> {
             centerTitle: true,
             elevation: 0,
             actions: [
-              IconButton(
-                  onPressed: () {
-                    globalKey.currentState?.showSnackBar(
-                      SnackBar(
-                        content: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(Icons.add_shopping_cart_rounded,
-                                color: Colors.orange),
-                            SizedBox(width: 10),
-                            Text("Sepete Eklendi",
-                                style: GoogleFonts.lato(
-                                    color: Colors.orange,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                        duration: Duration(seconds: 2),
-                        backgroundColor: Colors.orange[50],
-                        action: SnackBarAction(
-                          textColor: Colors.green,
-                          label: "Sepete Git",
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BasketPage(),
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
+              Builder(builder: (BuildContext context) {
+                return IconButton(
+                    onPressed: () {
+                      String content;
+                      if (state.cartItems.isEmpty) {
+                        content = "Sepette Ürün Yok";
+                      } else {
+                        content = "Sepet Temizlendi";
+                      }
 
-                    setState(() {
-                      state.cleanCart();
-                    });
-                  },
-                  icon: Icon(
-                    Icons.delete_outline_rounded,
-                    color: Colors.red,
-                    size: 30,
-                  ))
+                      Scaffold.of(context).showSnackBar(
+                        SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          margin: EdgeInsets.only(bottom: 89),
+                          content: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Icon(Icons.remove_shopping_cart_rounded,
+                                  color: Colors.red),
+                              SizedBox(width: 10),
+                              Text(content,
+                                  style: GoogleFonts.lato(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                          duration: Duration(seconds: 2),
+                          backgroundColor: Colors.orange[50],
+                        ),
+                      );
+
+                      setState(() {
+                        state.cleanCart();
+                      });
+                    },
+                    icon: Icon(
+                      Icons.delete_outline_rounded,
+                      color: Colors.red,
+                      size: 30,
+                    ));
+              })
             ],
           ),
           body: SingleChildScrollView(
@@ -95,12 +97,15 @@ class _BasketPageState extends State<BasketPage> {
                           return CartProductCard(
                             delete: (context) {
                               setState(() {
+                                state.cancelCartAdd(state.cartItems[index]);
+
                                 state.delleteProduct(state.cartItems[index]);
                               });
+                              print(state.cancelCartItems.length);
                               Scaffold.of(context).showSnackBar(
                                 SnackBar(
                                   behavior: SnackBarBehavior.floating,
-                                  margin: EdgeInsets.only(bottom: 100),
+                                  margin: EdgeInsets.only(bottom: 88),
                                   content: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
@@ -118,7 +123,12 @@ class _BasketPageState extends State<BasketPage> {
                                   action: SnackBarAction(
                                       textColor: Colors.red,
                                       label: "Geri Al",
-                                      onPressed: () {}),
+                                      onPressed: () {
+                                        setState(() {
+                                          state.incrementCart(
+                                              state.cancelCartItems.last);
+                                        });
+                                      }),
                                 ),
                               );
                             },
@@ -134,6 +144,9 @@ class _BasketPageState extends State<BasketPage> {
                             },
                             cartProduct: state.cartItems[index],
                             piece: state.cart[state.cartItems[index]] ?? 1,
+                            totalPrice: (state.cart[state.cartItems[index]])! *
+                                double.parse(
+                                    state.cartItems[index].product.price!),
                           );
                         },
                       ),
