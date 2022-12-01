@@ -15,6 +15,8 @@ class BasketPage extends StatefulWidget {
 }
 
 class _BasketPageState extends State<BasketPage> {
+  final globalKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<CartState>(
@@ -39,6 +41,35 @@ class _BasketPageState extends State<BasketPage> {
             actions: [
               IconButton(
                   onPressed: () {
+                    globalKey.currentState?.showSnackBar(
+                      SnackBar(
+                        content: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(Icons.add_shopping_cart_rounded,
+                                color: Colors.orange),
+                            SizedBox(width: 10),
+                            Text("Sepete Eklendi",
+                                style: GoogleFonts.lato(
+                                    color: Colors.orange,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        duration: Duration(seconds: 2),
+                        backgroundColor: Colors.orange[50],
+                        action: SnackBarAction(
+                          textColor: Colors.green,
+                          label: "Sepete Git",
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BasketPage(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+
                     setState(() {
                       state.cleanCart();
                     });
@@ -62,7 +93,35 @@ class _BasketPageState extends State<BasketPage> {
                         itemCount: state.cart.length,
                         itemBuilder: (context, index) {
                           return CartProductCard(
-                            delete: () {},
+                            delete: (context) {
+                              setState(() {
+                                state.delleteProduct(state.cartItems[index]);
+                              });
+                              Scaffold.of(context).showSnackBar(
+                                SnackBar(
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: EdgeInsets.only(bottom: 100),
+                                  content: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(Icons.add_shopping_cart_rounded,
+                                          color: Colors.orange),
+                                      SizedBox(width: 10),
+                                      Text("Sepetten Çıkartıldı",
+                                          style: GoogleFonts.lato(
+                                              color: Colors.orange,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                  duration: Duration(seconds: 2),
+                                  backgroundColor: Colors.orange[50],
+                                  action: SnackBarAction(
+                                      textColor: Colors.red,
+                                      label: "Geri Al",
+                                      onPressed: () {}),
+                                ),
+                              );
+                            },
                             remove: () {
                               setState(() {
                                 state.increseProduct(state.cartItems[index]);

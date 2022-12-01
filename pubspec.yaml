@@ -40,7 +40,7 @@ dependencies:
   shared_preferences: ^2.0.15
   carousel_pro: ^1.0.0
   flutter_slidable: ^2.0.0
-  quickalert:
+  quickalert: ^0.0.2
 
 dev_dependencies:
   flutter_test:

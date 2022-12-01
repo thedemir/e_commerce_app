@@ -58,7 +58,7 @@ class CategoryCard extends StatelessWidget {
                     //   width: 70,
                     //   child: ClipRRect(
                     //       borderRadius: BorderRadius.circular(10),
-                    //       child: Image.network(imageUrl)),
+                    //       child: Image.network("${imageUrl}")),
                     // ),
                     Text(
                       title,

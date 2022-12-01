@@ -24,7 +24,7 @@ class CartProductCard extends StatelessWidget {
   final CartProductModel cartProduct;
   void Function()? add;
   void Function()? remove;
-  final Function() delete;
+  final Function(BuildContext context)? delete;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class CartProductCard extends StatelessWidget {
           child: Slidable(
             endActionPane: ActionPane(motion: StretchMotion(), children: [
               SlidableAction(
-                onPressed: delete(),
+                onPressed: delete,
                 backgroundColor: Colors.red,
                 icon: Icons.delete,
               )

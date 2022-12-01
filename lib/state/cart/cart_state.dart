@@ -26,6 +26,11 @@ class CartState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void delleteProduct(CartProductModel product) {
+    cart.removeWhere((key, value) => key == product);
+    notifyListeners();
+  }
+
   void cleanCart() {
     cart.clear();
 
