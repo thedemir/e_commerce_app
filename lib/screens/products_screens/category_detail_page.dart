@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/model/categories_model.dart';
 import 'package:e_commerce_app/model/product_model.dart';
 import 'package:e_commerce_app/state/category/get_category_state.dart';
+import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
