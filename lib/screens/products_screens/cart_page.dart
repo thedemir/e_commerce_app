@@ -16,8 +16,6 @@ class BasketPage extends StatefulWidget {
 }
 
 class _BasketPageState extends State<BasketPage> {
-  final globalKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     return Consumer<CartState>(

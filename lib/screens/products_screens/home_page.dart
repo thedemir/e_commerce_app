@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.orange,
                                             fontWeight: FontWeight.bold)),
                                     SizedBox(width: 3),
-                                    Text("(${state5.cart.length})",
+                                    Text("(${state5.cart.length + 1})",
                                         style: GoogleFonts.lato(
                                             color: Colors.black38,
                                             fontSize: 12)),

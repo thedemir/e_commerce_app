@@ -25,10 +25,9 @@ class CartState extends ChangeNotifier {
   }
 
   void incrementCart(CartProductModel product) {
-    log(cart[product].toString());
-    if (cart[product] == null) {
+    if (cartItems.contains(product) == false) {
+      log("ürün sepette yok");
       addFirstToCart(product);
-      return;
     } else {
       cart[product] = cart[product]! + 1;
     }

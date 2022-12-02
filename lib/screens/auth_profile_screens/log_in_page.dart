@@ -43,6 +43,7 @@ class _LogInPageState extends State<LogInPage> {
                     controller: TextEditingController(text: state2.email.text),
                     readOnly: true,
                     decoration: InputDecoration(
+                      labelText: "E posta",
                       border: OutlineInputBorder(
                         borderSide:
                             const BorderSide(width: 50, color: Colors.orange),
@@ -58,6 +59,7 @@ class _LogInPageState extends State<LogInPage> {
                       enableSuggestions: false,
                       autocorrect: false,
                       decoration: InputDecoration(
+                        labelText: "Parola",
                         hintText: "Parola",
                         border: OutlineInputBorder(
                           borderSide: const BorderSide(width: 30),

@@ -43,6 +43,7 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
                       controller: state.email,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
+                        labelText: "E posta",
                         hintText: "E posta",
                         border: OutlineInputBorder(
                           borderSide: const BorderSide(width: 30),

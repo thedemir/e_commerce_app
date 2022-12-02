@@ -178,6 +178,19 @@ class _HomePageState extends State<PrimaryPage> {
                           },
                         ),
                         ListTile(
+                          leading: const Icon(Icons.notifications),
+                          title:
+                              const Text("Bildirimler", textScaleFactor: 1.2),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NotificationPage(),
+                                ));
+                          },
+                        ),
+                        ListTile(
                           leading: const Icon(Icons.shopping_basket_outlined),
                           title: const Text("Sepet", textScaleFactor: 1.2),
                           onTap: () {
