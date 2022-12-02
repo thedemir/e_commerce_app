@@ -1,8 +1,15 @@
+import 'package:e_commerce_app/screens/general_screens/notification_page.dart';
+import 'package:e_commerce_app/state/auth/log_in_state.dart';
 import 'package:e_commerce_app/state/auth/register_state.dart';
+import 'package:e_commerce_app/state/auth/update_profile_state.dart';
+import 'package:e_commerce_app/state/category/get_all_categories_state.dart';
+import 'package:e_commerce_app/state/category/get_category_state.dart';
+import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../state/auth/check_email_state.dart';
 import '../general_screens/primary_page.dart';
+import 'check_email_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -15,8 +22,10 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer2<RegisterState, CheckEmailState>(
-        builder: (context, state, state2, child) {
+      body: Consumer6<RegisterState, CheckEmailState, UpdateProfileState,
+          GetAllCategoriesState, GetCategoryState, GetAllProductsState>(
+        builder:
+            (context, state, state2, state3, state4, state5, state6, child) {
           return Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -98,18 +107,90 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: 280,
                     child: ElevatedButton(
                       onPressed: () async {
-                        await state.service.registerCall(
-                            name: state.name.text,
-                            email: state2.email.text,
-                            password: state.confirmPassword.text,
-                            passwordConfirmation: state.confirmPassword.text);
+                        if (state.password.text != state.confirmPassword.text) {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Kayıt Olunamadı"),
+                                  content: Text(
+                                      "Parola ve Parola Tekrarı eşleşmiyor"),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    CheckEmailPage()),
+                                              ),
+                                            ),
+                                        child: Text("Farklı Bir E posta")),
+                                    TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, true),
+                                        child: Text("Tekrar Dene"))
+                                  ],
+                                );
+                              });
+                        } else if (state.password.text == null ||
+                            state.password.text.length < 6) {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Giriş Yapılamadı"),
+                                  content: Text(
+                                      "Parola minimun 6 karakter içermelidir"),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    CheckEmailPage()),
+                                              ),
+                                            ),
+                                        child: Text("Farklı Bir E posta")),
+                                    TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, true),
+                                        child: Text("Tekrar Dene"))
+                                  ],
+                                );
+                              });
+                        } else if (state.password.text.length >= 6) {
+                          await state.service.registerCall(
+                              name: state.name.text,
+                              email: state2.email.text,
+                              password: state.confirmPassword.text,
+                              passwordConfirmation: state.confirmPassword.text);
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: ((context) => PrimaryPage()),
-                          ),
-                        );
+                          if (state.service.statuscode == true) {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                      color: Colors.orange),
+                                );
+                              },
+                            );
+
+                            state.fetch2();
+                            state3.fetch2();
+                            state.fetch2();
+                            await state4.fetch();
+                            await state5.fetch(14);
+                            await state6.fetch();
+                          }
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => PrimaryPage()),
+                            ),
+                          );
+                        }
                       },
                       child: const Text("İleri", textScaleFactor: 1.3),
                       style: ButtonStyle(

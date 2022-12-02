@@ -107,7 +107,7 @@ class CategoryDetailProductPage extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      state2.incrementCart(CartProductModel(products));
+                      state2.incrementCart(products);
                     },
                     style: ButtonStyle(
                         shape:

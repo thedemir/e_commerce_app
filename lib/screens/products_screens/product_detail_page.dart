@@ -71,10 +71,14 @@ class ProductDetailPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "${products.title}",
-                      style: GoogleFonts.lato(
-                          fontSize: 30, fontWeight: FontWeight.bold),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      child: Text(
+                        "${products.title}",
+                        maxLines: 1,
+                        style: GoogleFonts.lato(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                      ),
                     ),
                     Text(
                       "€ ${products.price}",
@@ -138,7 +142,7 @@ class ProductDetailPage extends StatelessWidget {
                           ),
                         );
 
-                        state2.incrementCart(CartProductModel(products));
+                        state2.incrementCart(products);
                       },
                       style: ButtonStyle(
                           shape:

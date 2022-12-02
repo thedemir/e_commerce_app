@@ -143,8 +143,7 @@ class _BasketPageState extends State<BasketPage> {
                             cartProduct: state.cartItems[index],
                             piece: state.cart[state.cartItems[index]] ?? 1,
                             totalPrice: (state.cart[state.cartItems[index]])! *
-                                double.parse(
-                                    state.cartItems[index].product.price!),
+                                double.parse(state.cartItems[index].price!),
                           );
                         },
                       ),

@@ -57,23 +57,27 @@ class CategoryDetailPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             child: Image.network("${category.image}")),
                         SizedBox(width: 40),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${category.title}",
-                              style: GoogleFonts.lato(
-                                  fontSize: 23, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: 5),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 11),
-                              child: Text(
-                                  "Ürün Sayısı   ${state.products?.length}",
-                                  style: GoogleFonts.lato(
-                                      fontSize: 15, color: Colors.grey)),
-                            ),
-                          ],
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${category.title}",
+                                maxLines: 1,
+                                style: GoogleFonts.lato(
+                                    fontSize: 23, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(height: 5),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 11),
+                                child: Text(
+                                    "Ürün Sayısı   ${state.products?.length}",
+                                    style: GoogleFonts.lato(
+                                        fontSize: 15, color: Colors.grey)),
+                              ),
+                            ],
+                          ),
                         )
                       ]),
                 ),
@@ -137,8 +141,7 @@ class CategoryDetailPage extends StatelessWidget {
                           ),
                         );
 
-                        state2.addFirstToCart(
-                            CartProductModel(state.products![index]));
+                        state2.addFirstToCart(state.products![index]);
                       },
                       products: state.products![index],
                       imageUrl: "${state.products?[index].image}",

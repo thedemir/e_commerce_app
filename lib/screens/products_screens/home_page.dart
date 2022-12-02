@@ -115,6 +115,8 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, index) {
                         return ProductCard(
                           addToCart: () async {
+                            state5.incrementCart(state3.products![index]);
+
                             Scaffold.of(context).showSnackBar(
                               SnackBar(
                                 content: Row(
@@ -129,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.orange,
                                             fontWeight: FontWeight.bold)),
                                     SizedBox(width: 3),
-                                    Text("(${state5.cart.length + 1})",
+                                    Text("(${state5.cart.length})",
                                         style: GoogleFonts.lato(
                                             color: Colors.black38,
                                             fontSize: 12)),
@@ -149,9 +151,6 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             );
-
-                            state5.incrementCart(
-                                CartProductModel(state3.products![index]));
                           },
                           categoryTitle:
                               "${state3.products?[index].category?.title}",

@@ -35,9 +35,11 @@ class LoginService {
     if (response.statusCode == 200) {
       var result = UserModel.fromJson(response.data);
       //-------------------------------
-      saveToken(result.token.toString());
-      saveName(result.user!.name.toString());
-      saveEmail(result.user!.email.toString());
+      if (result.status == true) {
+        saveToken(result.token.toString());
+        saveName(result.user!.name.toString());
+        saveEmail(result.user!.email.toString());
+      }
       //--------------------------------
       statuscode = result.status;
       return result;

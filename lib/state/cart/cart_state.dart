@@ -6,35 +6,37 @@ import 'package:flutter/cupertino.dart';
 import '../../model/product_model.dart';
 
 class CartState extends ChangeNotifier {
-  Map<CartProductModel, int> cart = {};
-  List<CartProductModel> get cartItems => cart.keys.toList();
+  Map<Data, int> cart = {};
+  List<Data> get cartItems => cart.keys.toList();
   //////////////////////////////////////////////////////
-  Map<CartProductModel, int> cancelCart = {};
-  List<CartProductModel> get cancelCartItems => cancelCart.keys.toList();
+  Map<Data, int> cancelCart = {};
+  List<Data> get cancelCartItems => cancelCart.keys.toList();
 
-  void cancelCartAdd(CartProductModel product) {
+  void cancelCartAdd(Data product) {
     cancelCart[product] = 1;
 
     notifyListeners();
   }
 
-  void addFirstToCart(CartProductModel product) {
+  void addFirstToCart(Data product) {
     cart[product] = 1;
 
     notifyListeners();
   }
 
-  void incrementCart(CartProductModel product) {
-    if (cartItems.contains(product) == false) {
+  void incrementCart(Data product) {
+    if (cart[product] == null) {
       log("ürün sepette yok");
       addFirstToCart(product);
+      return;
     } else {
-      cart[product] = cart[product]! + 1;
+      log("ürün sepette mevcut");
+      cart.update(product, (value) => value + 1);
     }
     notifyListeners();
   }
 
-  void delleteProduct(CartProductModel product) {
+  void delleteProduct(Data product) {
     cart.removeWhere((key, value) => key == product);
     notifyListeners();
   }
@@ -45,7 +47,7 @@ class CartState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void increseProduct(CartProductModel product) {
+  void increseProduct(Data product) {
     if (cart[product] == null) {
       return;
     }
@@ -69,7 +71,7 @@ class CartState extends ChangeNotifier {
       double _total = 0.00;
       double totalPrice;
       cart.forEach((key, value) {
-        _total += double.parse("${key.product.price}") * value;
+        _total += double.parse("${key.price}") * value;
       });
       totalPrice = double.parse(_total.toStringAsFixed(2));
       return totalPrice;

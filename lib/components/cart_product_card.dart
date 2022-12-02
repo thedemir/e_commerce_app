@@ -23,7 +23,7 @@ class CartProductCard extends StatelessWidget {
 
   double totalPrice;
   int piece;
-  final CartProductModel cartProduct;
+  final Data cartProduct;
   void Function()? add;
   void Function()? remove;
   final Function(BuildContext context)? delete;
@@ -55,7 +55,7 @@ class CartProductCard extends StatelessWidget {
                       height: 75,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.network("${cartProduct.product.image}")),
+                          child: Image.network("${cartProduct.image}")),
                     ),
                     SizedBox(width: 30),
                     Container(
@@ -63,14 +63,13 @@ class CartProductCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("${cartProduct.product.title}",
+                          Text("${cartProduct.title}",
                               maxLines: 1,
                               style: GoogleFonts.lato(
                                   fontSize: 20, fontWeight: FontWeight.w700)),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 7),
-                            child: Text(
-                                "${cartProduct.product.category?.title}",
+                            child: Text("${cartProduct.category?.title}",
                                 maxLines: 1,
                                 style: GoogleFonts.lato(
                                     fontSize: 15,
@@ -80,7 +79,7 @@ class CartProductCard extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "€ ${cartProduct.product.price}",
+                                "€ ${cartProduct.price}",
                                 style: GoogleFonts.lato(
                                     fontSize: 10,
                                     color: Colors.black38,

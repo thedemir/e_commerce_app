@@ -8,6 +8,11 @@ import 'package:e_commerce_app/state/auth/check_email_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../state/auth/update_profile_state.dart';
+import '../../state/category/get_all_categories_state.dart';
+import '../../state/category/get_category_state.dart';
+import '../../state/product/get_all_products_state.dart';
+
 class CheckEmailPage extends StatefulWidget {
   const CheckEmailPage({Key? key}) : super(key: key);
 

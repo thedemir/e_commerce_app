@@ -73,40 +73,15 @@ class _LogInPageState extends State<LogInPage> {
                     width: 280,
                     child: ElevatedButton(
                       onPressed: () async {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return Center(
-                                child: CircularProgressIndicator(
-                                    color: Colors.orange),
-                              );
-                            });
-
-                        await state.service.loginCall(
-                            email: state2.email.text,
-                            password: state.password.text);
-
-                        state3.fetch2();
-                        state.fetch2();
-                        await state4.fetch();
-                        await state6.fetch(14);
-                        await state5.fetch();
-                        Navigator.of(context).pop();
-                        if (state.service.statuscode == true) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => PrimaryPage()),
-                            ),
-                          );
-                        } else if (state.service.statuscode == false) {
+                        if (state.password.text == null ||
+                            state.password.text.length < 6) {
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {
-                                state.fetch();
-
                                 return AlertDialog(
-                                  title: Text("Parola Hatalı"),
+                                  title: Text("Giriş Yapılamadı"),
+                                  content: Text(
+                                      "Parola minimun 6 karakter içermelidir"),
                                   actions: [
                                     TextButton(
                                         onPressed: () => Navigator.push(
@@ -124,29 +99,85 @@ class _LogInPageState extends State<LogInPage> {
                                   ],
                                 );
                               });
-                        } else {
-                          showDialog(
+                        } else if (state.password.text.length >= 6) {
+                          await state.service.loginCall(
+                              email: state2.email.text,
+                              password: state.password.text);
+
+                          if (state.service.statuscode == true) {
+                            showDialog(
                               context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text("Parola Gereklidir"),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () => Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: ((context) =>
-                                                    CheckEmailPage()),
-                                              ),
-                                            ),
-                                        child: Text("Farklı Bir E posta")),
-                                    TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(context, true),
-                                        child: Text("Tekrar Dene"))
-                                  ],
+                              builder: (context) {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                      color: Colors.orange),
                                 );
-                              });
+                              },
+                            );
+
+                            state3.fetch2();
+                            state.fetch2();
+                            await state4.fetch();
+                            await state6.fetch(14);
+                            await state5.fetch();
+
+                            Navigator.of(context).pop();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) => PrimaryPage()),
+                              ),
+                            );
+                          } else if (state.service.statuscode == false) {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Giriş Yapılamadı"),
+                                    content: Text("Yeni bir şifre deneyin."),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () => Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: ((context) =>
+                                                      CheckEmailPage()),
+                                                ),
+                                              ),
+                                          child: Text("Farklı Bir E posta")),
+                                      TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, true),
+                                          child: Text("Tekrar Dene"))
+                                    ],
+                                  );
+                                });
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Giriş yapılamadı"),
+                                    content: Text(
+                                        "Parola minimun 6 karakter içermelidir"),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () => Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: ((context) =>
+                                                      CheckEmailPage()),
+                                                ),
+                                              ),
+                                          child: Text("Farklı Bir E posta")),
+                                      TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, true),
+                                          child: Text("Tekrar Dene"))
+                                    ],
+                                  );
+                                });
+                          }
                         }
                       },
                       child: const Text("Giriş Yap", textScaleFactor: 1.3),
