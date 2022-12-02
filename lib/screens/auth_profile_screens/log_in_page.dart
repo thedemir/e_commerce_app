@@ -118,7 +118,6 @@ class _LogInPageState extends State<LogInPage> {
                             state3.fetch2();
                             state.fetch2();
                             await state4.fetch();
-                            await state6.fetch(14);
                             await state5.fetch();
 
                             Navigator.of(context).pop();

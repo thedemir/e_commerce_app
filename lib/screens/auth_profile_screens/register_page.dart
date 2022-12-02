@@ -180,7 +180,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             state3.fetch2();
                             state.fetch2();
                             await state4.fetch();
-                            await state5.fetch(14);
                             await state6.fetch();
                           }
 

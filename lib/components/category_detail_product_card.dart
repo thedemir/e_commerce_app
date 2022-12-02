@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/screens/products_screens/category_detail_page.dart';
-import 'package:e_commerce_app/screens/products_screens/category_product_detail_page.dart';
 import 'package:e_commerce_app/screens/products_screens/product_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +11,8 @@ class CategoryDetailProductCard extends StatelessWidget {
       required this.title,
       required this.price,
       required this.products,
-      required this.addToCart})
+      required this.addToCart,
+      required this.categoryTitle})
       : super(key: key);
 
   final String imageUrl;
@@ -20,6 +20,7 @@ class CategoryDetailProductCard extends StatelessWidget {
   final String price;
   final Data products;
   void Function()? addToCart;
+  final String categoryTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,10 @@ class CategoryDetailProductCard extends StatelessWidget {
       onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ProductDetailPage(products: products))),
+              builder: (context) => ProductDetailPage(
+                    products: products,
+                    categoryTitle: categoryTitle,
+                  ))),
       child: Container(
         decoration: BoxDecoration(
             color: Colors.grey[100], borderRadius: BorderRadius.circular(20)),

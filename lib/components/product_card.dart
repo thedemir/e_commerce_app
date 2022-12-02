@@ -39,7 +39,10 @@ class ProductCard extends StatelessWidget {
         await Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ProductDetailPage(products: products)));
+                builder: (context) => ProductDetailPage(
+                      products: products,
+                      categoryTitle: "${products.category?.title}",
+                    )));
       },
       child: Container(
         decoration: BoxDecoration(

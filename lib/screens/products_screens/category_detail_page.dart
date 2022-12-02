@@ -147,6 +147,8 @@ class CategoryDetailPage extends StatelessWidget {
                       imageUrl: "${state.products?[index].image}",
                       title: "${state.products?[index].title}",
                       price: "${state.products?[index].price}",
+                      categoryTitle:
+                          "${state.products?[index].category?.title}",
                     );
                   },
                 ),

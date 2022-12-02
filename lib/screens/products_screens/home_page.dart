@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return CategoryCard(
-                          id: 14,
+                          id: state.categories?[index].id ?? 14,
                           category: state.categories![index],
                           imageUrl: "${state.categories?[index].image}",
                           title: "${state.categories?[index].title}");

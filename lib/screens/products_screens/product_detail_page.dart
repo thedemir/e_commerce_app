@@ -9,9 +9,12 @@ import 'package:e_commerce_app/model/product_model.dart';
 import 'cart_page.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage({Key? key, required this.products}) : super(key: key);
+  const ProductDetailPage(
+      {Key? key, required this.products, required this.categoryTitle})
+      : super(key: key);
 
   final Data products;
+  final String categoryTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,7 @@ class ProductDetailPage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           vertical: 4, horizontal: 9),
                       child: Text(
-                        "${products.category?.title}",
+                        "${categoryTitle}",
                         style:
                             GoogleFonts.lato(color: Colors.white, fontSize: 13),
                       ),
