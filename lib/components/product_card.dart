@@ -66,6 +66,9 @@ class ProductCard extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: 2,
+            ),
             Text(
               categoryTitle,
               style: GoogleFonts.lato(color: Colors.black26, fontSize: 11),

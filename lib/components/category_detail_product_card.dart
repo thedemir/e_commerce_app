@@ -36,55 +36,64 @@ class CategoryDetailProductCard extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.grey[100], borderRadius: BorderRadius.circular(20)),
         child: Padding(
-          padding: const EdgeInsets.only(top: 10, bottom: 5),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          padding: const EdgeInsets.only(
+              top: 10, bottom: 10, left: 22.6, right: 22.6),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 100,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.network("$imageUrl"),
-                  ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image(
+                      height: 75,
+                      width: 120,
+                      fit: BoxFit.fill,
+                      image: NetworkImage("$imageUrl")),
                 ),
-                Text(
-                  title,
-                  style: GoogleFonts.lato(),
-                  textScaleFactor: 1.2,
-                  overflow: TextOverflow.visible,
-                  maxLines: 1,
+              ],
+            ),
+            SizedBox(height: 5),
+            Text(
+              title,
+              style: GoogleFonts.lato(),
+              textScaleFactor: 1.2,
+              overflow: TextOverflow.visible,
+              maxLines: 1,
+            ),
+            SizedBox(height: 5),
+            Text(
+              "€ $price",
+              style: GoogleFonts.lato(
+                  color: Colors.orange, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 7.7),
+            SizedBox(
+              width: 120,
+              height: 25,
+              child: OutlinedButton(
+                onPressed: addToCart,
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(width: 1, color: Colors.orange),
                 ),
-                Text(
-                  "€ $price",
-                  style: GoogleFonts.lato(
-                      color: Colors.orange, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: 120,
-                  height: 25,
-                  child: OutlinedButton(
-                    onPressed: addToCart,
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(width: 1, color: Colors.orange),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.shopping_basket_rounded,
+                      size: 14,
+                      color: Colors.orange,
                     ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.shopping_basket_rounded,
-                          size: 14,
-                          color: Colors.orange,
-                        ),
-                        SizedBox(width: 10),
-                        Text(
-                          "Sepete Ekle",
-                          style: GoogleFonts.lato(color: Colors.orange),
-                          textScaleFactor: 0.8,
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ]),
+                    SizedBox(width: 10),
+                    Text(
+                      "Sepete Ekle",
+                      style: GoogleFonts.lato(color: Colors.orange),
+                      textScaleFactor: 0.8,
+                    )
+                  ],
+                ),
+              ),
+            )
+          ]),
         ),
       ),
     );

@@ -33,7 +33,7 @@ class CartProductCard extends StatelessWidget {
     return Consumer<CartState>(
       builder: (context, state, child) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
           child: Slidable(
             endActionPane: ActionPane(motion: StretchMotion(), children: [
               SlidableAction(
@@ -50,53 +50,60 @@ class CartProductCard extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 75,
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network("${cartProduct.image}")),
-                    ),
-                    SizedBox(width: 30),
-                    Container(
-                      width: 102,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("${cartProduct.title}",
-                              maxLines: 1,
-                              style: GoogleFonts.lato(
-                                  fontSize: 20, fontWeight: FontWeight.w700)),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 7),
-                            child: Text("${cartProduct.category?.title}",
-                                maxLines: 1,
-                                style: GoogleFonts.lato(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey)),
-                          ),
-                          Row(
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 75,
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network("${cartProduct.image}")),
+                        ),
+                        SizedBox(width: 30),
+                        Container(
+                          width: 102,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "€ ${cartProduct.price}",
-                                style: GoogleFonts.lato(
-                                    fontSize: 10,
-                                    color: Colors.black38,
-                                    fontWeight: FontWeight.w600),
+                              Text("${cartProduct.title}",
+                                  maxLines: 1,
+                                  style: GoogleFonts.lato(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700)),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 7),
+                                child: Text("${cartProduct.category?.title}",
+                                    maxLines: 1,
+                                    style: GoogleFonts.lato(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.grey)),
                               ),
-                              SizedBox(width: 3),
-                              Text(
-                                "€ ${totalPrice}",
-                                style: GoogleFonts.lato(
-                                    fontSize: 13,
-                                    color: Colors.orange,
-                                    fontWeight: FontWeight.w600),
-                              )
+                              Row(
+                                children: [
+                                  Text(
+                                    "€ ${cartProduct.price}",
+                                    style: GoogleFonts.lato(
+                                        fontSize: 10,
+                                        color: Colors.black38,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  SizedBox(width: 3),
+                                  Text(
+                                    "€ ${totalPrice}",
+                                    style: GoogleFonts.lato(
+                                        fontSize: 13,
+                                        color: Colors.orange,
+                                        fontWeight: FontWeight.w600),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     SizedBox(width: 15),
                     IconButton(onPressed: remove, icon: Icon(Icons.remove)),
