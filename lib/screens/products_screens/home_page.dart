@@ -110,6 +110,7 @@ class _HomePageState extends State<HomePage> {
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 200,
                           crossAxisSpacing: 20,
+                          mainAxisExtent: 185,
                           mainAxisSpacing: 10),
                       itemCount: state3.products?.length,
                       itemBuilder: (context, index) {

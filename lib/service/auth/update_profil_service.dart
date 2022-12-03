@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UpdateProfileService {
   var baseurl = "https://demoapi.webudi.tech/api/";
   var token;
+  var statuscode;
 
   Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
@@ -40,6 +41,8 @@ class UpdateProfileService {
     );
     if (response.statusCode == 200) {
       var result = UserModel.fromJson(response.data);
+
+      statuscode = result.status;
       log(jsonEncode(response.data));
     } else {
       log(response.data);
