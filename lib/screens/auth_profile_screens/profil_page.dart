@@ -171,7 +171,7 @@ class _ProfilPageState extends State<ProfilPage> {
                                     SizedBox(width: 10),
                                     Text("Profil Güncellendi",
                                         style: GoogleFonts.lato(
-                                            color: Colors.orange,
+                                            color: Colors.green,
                                             fontWeight: FontWeight.bold)),
                                   ],
                                 ),
@@ -203,27 +203,6 @@ class _ProfilPageState extends State<ProfilPage> {
                           }
                           state.password.clear();
                           state.password_confirmation.clear();
-                        }
-                        if (state.service.statuscode == true) {
-                          Scaffold.of(context).showSnackBar(
-                            SnackBar(
-                              content: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Icon(Icons.person, color: Colors.orange),
-                                  SizedBox(width: 10),
-                                  Text("Profil Güncellendi",
-                                      style: GoogleFonts.lato(
-                                          color: Colors.orange,
-                                          fontWeight: FontWeight.bold)),
-                                  SizedBox(width: 3),
-                                ],
-                              ),
-                              duration: Duration(seconds: 2),
-                              backgroundColor: Colors.orange[50],
-                            ),
-                          );
                         } else if (state.service.statuscode == false) {
                           Scaffold.of(context).showSnackBar(
                             SnackBar(

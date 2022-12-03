@@ -5,6 +5,7 @@ import 'package:e_commerce_app/model/cart_model.dart';
 import 'package:e_commerce_app/screens/products_screens/cart_page.dart';
 import 'package:e_commerce_app/screens/products_screens/categories_page.dart';
 import 'package:e_commerce_app/state/cart/cart_state.dart';
+import 'package:e_commerce_app/state/cart/favorite_state.dart';
 import 'package:e_commerce_app/state/category/get_category_state.dart';
 import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool click = true;
+
   @override
   void initState() {
     super.initState();
+
     Provider.of<GetCategoryState>(context, listen: false).fetch(14);
   }
+
+  Icon favoriteIconDeactive = Icon(
+    Icons.favorite_outline_rounded,
+    size: 22,
+    color: Colors.black45,
+  );
+
+  Icon favoriteIconActive = Icon(
+    Icons.favorite_rounded,
+    size: 22,
+    color: Colors.red,
+  );
 
   final snackBar = SnackBar(
     content: Row(
@@ -40,9 +56,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer5<GetAllCategoriesState, UpdateProfileState,
-        GetAllProductsState, GetCategoryState, CartState>(
-      builder: (context, state, state2, state3, state4, state5, widget) {
+    return Consumer6<GetAllCategoriesState, UpdateProfileState,
+        GetAllProductsState, GetCategoryState, CartState, FavoriteState>(
+      builder:
+          (context, state, state2, state3, state4, state5, state6, widget) {
         return Scaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -115,6 +132,20 @@ class _HomePageState extends State<HomePage> {
                       itemCount: state3.products?.length,
                       itemBuilder: (context, index) {
                         return ProductCard(
+                          changeFavorite: () {
+                            setState(() {
+                              click = !click;
+
+                              if (click = false) {
+                                state6.addToFavorite(state3.products![index]);
+                              } else if (click = true) {
+                                state6.removeFromFavorite(
+                                    state3.products![index]);
+                              }
+
+                              print("sdsfsdf");
+                            });
+                          },
                           addToCart: () async {
                             state5.incrementCart(state3.products![index]);
 
@@ -153,6 +184,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                           },
+                          currentIcon: (click = false)
+                              ? favoriteIconActive
+                              : favoriteIconDeactive,
                           categoryTitle:
                               "${state3.products?[index].category?.title}",
                           imageUrl: "${state3.products?[index].image}",

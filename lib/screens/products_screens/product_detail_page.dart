@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/model/cart_model.dart';
 import 'package:e_commerce_app/state/cart/cart_state.dart';
+import 'package:e_commerce_app/state/cart/favorite_state.dart';
 import 'package:e_commerce_app/state/product/get_all_products_state.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,17 +10,20 @@ import 'package:e_commerce_app/model/product_model.dart';
 import 'cart_page.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage(
-      {Key? key, required this.products, required this.categoryTitle})
-      : super(key: key);
+  const ProductDetailPage({
+    Key? key,
+    required this.products,
+    required this.categoryTitle,
+  }) : super(key: key);
 
   final Data products;
   final String categoryTitle;
+  static bool click = true;
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<GetAllProductsState, CartState>(
-        builder: (context, state, state2, widget) {
+    return Consumer3<GetAllProductsState, CartState, FavoriteState>(
+        builder: (context, state, state2, state3, widget) {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange[50],

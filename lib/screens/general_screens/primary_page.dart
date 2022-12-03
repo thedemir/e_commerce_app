@@ -4,6 +4,7 @@ import 'package:e_commerce_app/screens/auth_profile_screens/profil_page.dart';
 import 'package:e_commerce_app/screens/general_screens/notification_page.dart';
 import 'package:e_commerce_app/screens/products_screens/cart_page.dart';
 import 'package:e_commerce_app/screens/products_screens/category_detail_page.dart';
+import 'package:e_commerce_app/screens/products_screens/favorite_page.dart';
 import 'package:e_commerce_app/screens/products_screens/home_page.dart';
 import 'package:e_commerce_app/state/auth/log_in_state.dart';
 import 'package:e_commerce_app/state/cart/cart_state.dart';
@@ -178,7 +179,7 @@ class _HomePageState extends State<PrimaryPage> {
                           },
                         ),
                         ListTile(
-                          leading: const Icon(Icons.notifications),
+                          leading: const Icon(Icons.notifications_outlined),
                           title:
                               const Text("Bildirimler", textScaleFactor: 1.2),
                           onTap: () {
@@ -187,6 +188,18 @@ class _HomePageState extends State<PrimaryPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => NotificationPage(),
+                                ));
+                          },
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.favorite_border_rounded),
+                          title: const Text("Favoriler", textScaleFactor: 1.2),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FavoritePage(),
                                 ));
                           },
                         ),

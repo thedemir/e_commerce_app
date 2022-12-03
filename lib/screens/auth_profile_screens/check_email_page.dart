@@ -79,9 +79,6 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
                                   );
                                 });
                           } else if (state.email.text.isNotEmpty) {
-                            await state.service
-                                .checkEmailCall(email: state.email.text);
-
                             showDialog(
                                 context: context,
                                 builder: (context) {
@@ -90,6 +87,9 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
                                         color: Colors.orange),
                                   );
                                 });
+
+                            await state.service
+                                .checkEmailCall(email: state.email.text);
 
                             Navigator.of(context).pop();
 

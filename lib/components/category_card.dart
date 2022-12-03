@@ -63,7 +63,7 @@ class CategoryCard extends StatelessWidget {
                     Text(
                       title,
                       style: GoogleFonts.lato(),
-                      overflow: TextOverflow.ellipsis,
+                      overflow: TextOverflow.visible,
                       maxLines: 1,
                     )
                   ],
