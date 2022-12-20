@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Li2uwg3H9os" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Li2uwg3H9os/0.jpg)](https://www.youtube.com/watch?v=Li2uwg3H9os)
 
 ## Getting Started
 
