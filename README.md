@@ -1,6 +1,6 @@
 # e_commerce_app
 
-A new Flutter project.
+App Video https://www.youtube.com/watch?v=Li2uwg3H9os
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Li2uwg3H9os/0.jpg)](https://www.youtube.com/watch?v=Li2uwg3H9os)
 
